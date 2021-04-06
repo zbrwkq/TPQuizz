@@ -1,5 +1,6 @@
 <?php
 require_once "header.php";
+require_once "../traitements/inscription.php";
 ?>
 
 <link rel="stylesheet" href="styleInscriptionConnexion.css">

@@ -166,3 +166,10 @@ main .right .right-content a{
 	cursor: pointer;
 	outline: none;
 }
+
+
+.alert{
+	position: absolute;
+	top: 10%;
+	transform: translate(-50% -50%);
+}
