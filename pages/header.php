@@ -1,3 +1,6 @@
+<?php
+require_once "../modeles/modele.php";
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
