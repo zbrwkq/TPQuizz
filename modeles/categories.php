@@ -5,19 +5,7 @@ function categories(){
     return $requete->fetchAll(PDO::FETCH_ASSOC);
 }
 function topCategories(){
-    $requete = getBdd()->prepare ("SELECT idCategorie,COUNT(idQuizz) as compte FROM `quizz` GROUP BY idCategorie ORDER BY compte DESC LIMIT 4");
+    $requete = getBdd()->prepare ("SELECT idCategorie,categories.titre,photo,COUNT(idQuizz) as nbrQuizz FROM categories LEFT JOIN quizz USING(idCategorie) GROUP BY idCategorie ORDER BY nbrQuizz DESC LIMIT 4");
     $requete->execute();
-    $requete = $requete->fetchAll(PDO::FETCH_ASSOC);
-    $top = [];
-    foreach($requete as $categorie){
-        $top[]= $categorie["idCategorie"];
-    }
-    $sql = "SELECT * FROM categories WHERE";
-    foreach($top as $iteration){
-        $sql.= " idCategorie = ? OR";
-    }
-    $sql = substr($sql,0,-2);
-    $requete= getBdd()->prepare($sql);
-    $requete->execute($top);
     return $requete->fetchAll(PDO::FETCH_ASSOC);
 }

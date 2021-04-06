@@ -2,22 +2,26 @@
 require_once "../traitements/index.php";
 require_once "header.php";
 ?>
-<main>
-    <section>
-        <!-- les 5 quizz les plus populaires -->
-    </section>
-    <section class="">
-        <?php
-        foreach($top as $categorie){
-            ?>
-            <div class="card" style="background-image: url('<?=$categorie["photo"];?>" alt="">')">
-                <h1><?=$categorie["titre"];?></h1>
-            </div>
+<link rel="stylesheet" href="../pages/styles/styleIndex.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+<body>
+    <main>
+        <section>
+            <!-- les 5 quizz les plus populaires -->
+        </section>
+        <section>
             <?php
-        }
-        ?>
-    </section>
-    <section>
-        <!-- liste d'amis -->
-    </section>
-</main>
+            foreach($top as $categorie){
+                ?>
+                <a href="#" class="card" style="background-image: url('<?=$categorie["photo"];?>')">
+                    <h1><?=$categorie["titre"];?></h1>
+                </a>
+                <?php
+            }
+            ?>
+        </section>
+        <section>
+            <!-- liste d'amis -->
+        </section>
+    </main>
+</body>
