@@ -13,7 +13,7 @@ require_once "../traitements/inscription.php";
 				<h1>S'inscrire !</h1>
 				<p>utilisez votre identifiant pour vous inscrire</p>
 				<div class="form-inscription">
-					<form action="#" method="POST">
+					<form method="POST">
 						<input type="text" name="identifiant" id="identifiant" placeholder="Identifiant">
 						<input type="password" name="mdp" id="mdp" placeholder="Mot de passe">
 						<input type="password" name="confirmationMdp" id="confirmationMdp" placeholder="Confirmez le mot de passe">

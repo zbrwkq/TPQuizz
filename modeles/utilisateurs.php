@@ -8,10 +8,6 @@ function inscription(){
 
 function questionSecrete(){
     extract($_POST);
-    // $requete = getBdd()->prepare("SELECT * FROM question_secrete");
-    // $requete->execute();
-    // $requete->fetchAll(PDO::FETCH_ASSOC);
-
     $requete = getBdd()->prepare("INSERT INTO secret(idQuestionSecrete, reponse) VALUES(?, ?)");
     if($_POST["questionSecrete"] == "question1"){
         $idQuestionSecrete = 1;
@@ -22,5 +18,4 @@ function questionSecrete(){
     }
     $requete->execute([$idQuestionSecrete, $reponseQuestionSecrete]);
 }
-
 ?>

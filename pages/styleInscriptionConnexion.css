@@ -163,6 +163,7 @@ main .right .right-content a{
 
 .alert{
 	position: absolute;
-	top: 10%;
+	top: 3%;
 	transform: translate(-50% -50%);
+	text-align: center;
 }

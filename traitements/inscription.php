@@ -5,7 +5,7 @@ require_once "../modeles/modele.php";
 
 $erreurs = [];
 
-if(!empty($_POST["identifiant"]) && !empty($_POST["mdp"]) && !empty($_POST["confirmationMdp"])){
+if(!empty($_POST["identifiant"]) && !empty($_POST["mdp"]) && !empty($_POST["confirmationMdp"]) && !empty($_POST["questionSecrete"]) && !empty($_POST["reponseQuestionSecrete"])){
     extract($_POST);
     if($mdp != $confirmationMdp){
         $erreurs[] = "Les mots de passes saisit ne sont pas identiques !";
@@ -23,7 +23,7 @@ if(!empty($_POST["identifiant"]) && !empty($_POST["mdp"]) && !empty($_POST["conf
             L'inscription n'a pas été effectuée : 
             <?php
             foreach($erreurs as $erreur){
-                echo($erreur);
+                echo($erreur . "<br>");
             }
             ?>
         </div>
