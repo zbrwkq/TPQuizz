@@ -16,6 +16,7 @@ if(!empty($_POST["identifiant"]) && !empty($_POST["mdp"]) && !empty($_POST["conf
 
     if(count($erreurs) == 0){
         inscription();
+        questionSecrete();
     }else{
         ?>
         <div class="alert alert-danger">
