@@ -4,7 +4,6 @@ require_once "../traitements/inscription.php";
 ?>
 
 <link rel="stylesheet" href="styleInscriptionConnexion.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 
 <body>
 	<main>
@@ -13,7 +12,7 @@ require_once "../traitements/inscription.php";
 				<h1>S'inscrire !</h1>
 				<p>utilisez votre identifiant pour vous inscrire</p>
 				<div class="form-inscription">
-					<form method="POST">
+					<form action="../traitements/inscription.php" method="POST">
 						<input type="text" name="identifiant" id="identifiant" placeholder="Identifiant">
 						<input type="password" name="mdp" id="mdp" placeholder="Mot de passe">
 						<input type="password" name="confirmationMdp" id="confirmationMdp" placeholder="Confirmez le mot de passe">
@@ -24,7 +23,7 @@ require_once "../traitements/inscription.php";
 							<option value="question3">Quel surnom vous donne vos proches ?</option>
 						</select>
 						<input type="text" name="reponseQuestionSecrete" id="reponseQuestionSecrete" placeholder="Réponse de la question secrète">
-						<button type="submit">S'inscrire</button>
+						<button type="submit" name="envoi" value="1">S'inscrire</button>
 					</form>
 				</div>
 			</div>
