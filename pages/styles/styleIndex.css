@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+:root{
+    --color1: #ff4a2a;
+    --color2: #FF416C;
+}
+body{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    background-color: gray;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+main{
+    max-width: 100%!important;
+    min-width: 1000px;
+    width: 80%;
+    margin: auto 0;
+    background-color: white;
+}
+section{
+    padding: 5px 10px;
+    margin: 20px 0;
+    background-color: rgba(128, 128, 128, 0.1);
+}
+section div{
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    overflow-x: auto;
+    
+}
+.card{
+    width: 200px;
+    height: 350px;
+    min-width: 200px;
+    border-radius: 20px;
+    margin: 10px;
+    padding: 10px;
+    color: white;
+}
+.card img{
+    width: 200px;
+    height: 300px;
+}
+.plus{
+    background-color: rgb(161, 161, 161);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.plus div{
+    width: 100px;
+    height: 100px;
+    background-color: grey;
+    border: solid grey 10px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+.plus table{
+    border-collapse: collapse;
+    width: 150px;
+}
+.plus h1{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+.plus div table tr th{
+    width: 60px;
+    height: 60px;
+    border: solid rgb(161, 161, 161) 15px;
+}
