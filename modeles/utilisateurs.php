@@ -19,5 +19,13 @@ class Utilisateur{
         }
         $requete->execute([$idQuestionSecrete, $reponseQuestionSecrete]);
     }
+
+    public function utilisateurs(){
+        $requete = getBdd()->prepare("SELECT identifiant FROM utilisateurs");
+        $requete->execute();
+        return $requete->fetchAll(PDO::FETCH_ASSOC);
+        return $requete->rowCount();
+    }
 }
+
 ?>
