@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+	overflow: hidden;
+}
+:root{
+    --color1: #FF4B2B;
+    --color2: #FF416C;
+}
+
+
+body main{
+    width: 100%;
+    height: 100vh;
+    background-color: #fff;
+    display: flex;
+}
+body main .column{
+    width: 50%;
+    height: 100%;
+}
+body main .right .wave{
+    width: 100%;
+    height: 150%;
+    border-bottom-left-radius: 100%;
+    background-color: var(--color1);
+
+}
+body main .right .wave img:nth-child(1){
+    position: absolute;
+    top: 2%;
+    right: 2%;
+}
+body main .right .wave img:nth-child(2){
+    position: absolute;
+    right: 5%;
+    top: 20%;
+}
+
+
+main .left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+main .left .left-card{
+    width: 75%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: #eee;
+	padding: 20px;
+	border-radius: 20px;
+	box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.4);
+}
+main .left img#imgProfil{
+	margin-bottom: 10px;
+}
+main .left h1{
+	font-size: 38px;
+	font-weight: 400;
+	letter-spacing: 0.5px;
+}
+main .left form{
+	display: flex;
+	flex-direction: column;
+    width: 75%;
+}
+main .left form input{
+	margin: 10px 0;
+	outline: none;
+	height: 45px;
+	padding: 10px;
+	background-color: #ccc;
+	border: none;
+}
+main .left form input:focus{
+	border: 1px solid #111;
+}
+main .left form select{
+	margin: 10px 0;
+	outline: none;
+	height: 40px;
+	background-color: #ccc;
+	border: none;
+}
+main .left form a{
+	display: flex;
+	justify-content: flex-end;
+	color: #444;
+}
+main .left form button{
+	width: 50%;
+	height: 40px;
+	margin: 10px auto;
+	border: none;
+	background: #eee;
+	letter-spacing: 0.5px;
+	font-weight: 500;
+	outline: none;
+}

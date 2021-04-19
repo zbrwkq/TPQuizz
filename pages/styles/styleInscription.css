@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+	overflow: hidden;
+}
+:root{
+    --color1: #FF4B2B;
+    --color2: #FF416C;
+}
+
+
+/* STYLE DE LA PAGE */
+main{
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	background-color: #fff;
+}
+main .column{
+	height: 100%;
+	z-index: 5;
+}
+
+main .left{
+	width: 55%;
+}
+main .left .wave{
+	width: 55%;
+	height: 125%;
+	position: absolute;
+	z-index: 10;
+	background: var(--color1);
+	border-bottom-right-radius: 100%;
+}
+main .left img#logoTopQuizz{
+	position: absolute;
+	top: 2%;
+	left: 3%;
+	z-index: 15;
+}
+main .left .img{
+	width: 83%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+main .left .img img{
+	z-index: 15;
+}
+main .left .img a{
+	z-index: 15;
+	text-decoration: none;
+	color: #fff;
+	background: var(--color2);
+	margin: 10px 0;
+	padding: 10px;
+	border: 2px solid #fff;
+	border-radius: 10px;
+}
+
+main .right{
+	width: 45%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+main .right .right-card{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background: #eee;
+	padding: 20px;
+	border-radius: 20px;
+	box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.4);
+}
+main .right img#imgProfil{
+	margin-bottom: 10px;
+}
+main .right h1{
+	font-size: 38px;
+	font-weight: 400;
+	letter-spacing: 0.5px;
+}
+main .right form{
+	display: flex;
+	flex-direction: column;
+}
+main .right form input{
+	margin: 10px 0;
+	outline: none;
+	height: 45px;
+	padding: 10px;
+	background-color: #ccc;
+	border: none;
+}
+main .right form input:focus{
+	border: 1px solid #111;
+}
+main .right form select{
+	margin: 10px 0;
+	outline: none;
+	height: 40px;
+	background-color: #ccc;
+	border: none;
+}
+main .right form a{
+	display: flex;
+	justify-content: flex-end;
+	color: #444;
+}
+main .right form button{
+	width: 50%;
+	height: 40px;
+	margin: 10px auto;
+	border: none;
+	background: #eee;
+	letter-spacing: 0.5px;
+	font-weight: 500;
+	outline: none;
+}
+
+.alert{
+	position: absolute;
+	right: 8.5%;
+	top: 2%;
+	z-index: 999;
+	min-width: 445px;
+	max-width: 445px;
+}

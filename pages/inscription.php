@@ -3,7 +3,7 @@ require_once "header.php";
 require_once "../traitements/inscription.php";
 ?>
 
-<link rel="stylesheet" href="styles/styleInscriptionConnexion.css">
+<link rel="stylesheet" href="styles/styleInscription.css">
 
 <body>
 	<main>
@@ -12,7 +12,7 @@ require_once "../traitements/inscription.php";
 			<img id="logoTopQuizz" src="images/logo/logo.svg" alt="Logo de TopQuizz" width="220">
 			<div class="img">
 				<img src="images/imagesConnexion/img1.svg" alt="Illustration d'inscription" width="500">
-				<p>Déjà membre ? C'est <a href="#">ICI</a></p>
+				<a href="../pages/connexion.php">SE CONNECTER</a>
 			</div>
 		</div>
 
@@ -20,7 +20,7 @@ require_once "../traitements/inscription.php";
 			<div class="right-card">
 				<img id="imgProfil" src="images/imagesConnexion/img2.svg" alt="Image d'illutration d'un profil" width="100">
 				<h1>S'inscrire</h1>
-				<form action="../traitements/inscription.php" method="post">
+				<form action="#" method="post">
 					<input type="text" name="identifiant" id="identifiant" placeholder="Identifiant..." required>
 					<div class="passwords">
 						<input type="password" name="mdp" id="mdp" placeholder="Mot de passe..." required>
@@ -28,18 +28,47 @@ require_once "../traitements/inscription.php";
 					</div>
 					<select name="questionSecrete" id="questionSecrete">
 						<option value="">-- Question Secrète --</option>
-						<option value="question1">Dans quelle ville êtes-vous né(e) ?</option>
-						<option value="question2">Combien avez-vous de frère(s) et/ou soeur(s) ?</option>
-						<option value="question3">Quel surnom vous donne vos proches ?</option>
+						<option value="1">Dans quelle ville êtes-vous né(e) ?</option>
+						<option value="2">Combien avez-vous de frère(s) et/ou soeur(s) ?</option>
+						<option value="3">Quel surnom vous donne vos proches ?</option>
 					</select>
-					<input type="text" name="reponseQuestionSecrete" id="reponseQuestionSecrete" placeholder="Réponse..." required>
+					<input type="text" name="reponseSecrete" id="reponseQuestionSecrete" placeholder="Réponse..." required>
 
-					<a href="#">Mot de passe oublié ?</a>
 					<button type="submit" name="inscription" value="1">S'inscrire</button>
 				</form>
 			</div>
 		</div>
 	</main>
+
+<?php
+if(!empty($_GET)){
+    if($_GET["error"] == "empty"){
+        ?>
+        <div class="alert alert-danger">
+            L'un des champs est vide !
+        </div>
+        <?php
+    }else if($_GET["error"] == "passwords"){
+        ?>
+        <div class="alert alert-danger">
+            Les deux mots de passe ne correspondent pas !
+        </div>
+        <?php
+    }else if($_GET["error"] == "passwordlen"){
+        ?>
+        <div class="alert alert-danger">
+            Le mot de passe est trop court !
+        </div>
+        <?php
+	}else if($_GET["error"] == "username"){
+		?>
+		<div class="alert alert-danger">
+			Le nom d'utilisateur est déjà utilisé !
+		</div>
+		<?php
+	}
+}
+?>
 
 
 
