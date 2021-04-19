@@ -13,7 +13,13 @@ class Utilisateur extends Modele{
 
     public function __construct($idUtilisateur = null){
         if($idUtilisateur !== null){
-            $this->idUtilisateur = $_SESSION["idUtilisateur"];
+            $requete = $this->getBdd()->prepare("SELECT * FROM utilisateurs WHERE idUtilisateur = ?");
+            $requete->execute([$idUtilisateur]);
+            $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
+
+            $this->idUtilisateur = $utilisateur["idUtilisateur"];
+            $this->identifiant = $utilisateur["identifiant"];
+            $this->autorisation = $utilisateur["autorisation"];
         }
     }
 
@@ -44,6 +50,19 @@ class Utilisateur extends Modele{
         $requete->execute([$identifiant, $mdp]);
         return $requete->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    //Fonction qui banni un utilisateur
+    public function banUtilisateur($idUtilisateur){
+        $requete = $this->getBdd()->prepare("UPDATE utilisateurs SET autorisation = 0 WHERE idUtilisateur = ?");
+        $requete->execute([$idUtilisateur]);
+    }
+
+    //Fonction qui débanni un utilisateur
+    public function debanUtilisateur($idUtilisateur){
+        $requete = $this->getBdd()->prepare("UPDATE utilisateurs SET autorisation = 1 WHERE idUtilisateur = ?");
+        $requete->execute([$idUtilisateur]);
+    }
+
     // public function questionSecrete(){
         // extract($_POST);
         // $requete = $this->getBdd()->prepare("INSERT INTO secret(idQuestionSecrete, reponse) VALUES(?, ?)");

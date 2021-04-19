@@ -117,9 +117,21 @@ $Administration = new Administration();
                                 <td><?=$membre["autorisation"];?></td>
                                 <td>
                                     <button type="button">Modifier</button>
-                                    <a href="#" title="Bannir">
-                                        <i class="fas fa-gavel"></i>
-                                    </a>
+                                    <?php
+                                    if($membre["autorisation"] == 1){
+                                    ?>
+                                        <button type="submit" title="Bannir" onclick="popupBannissement(<?=$membre['idUtilisateur'];?>)">
+                                            <i class="fas fa-gavel"></i>
+                                        </button>
+                                    <?php
+                                    }else if($membre["autorisation"] == 0){
+                                    ?>
+                                        <button type="submit" title="Débannir" onclick="popupDebannissement(<?=$membre['idUtilisateur'];?>)">
+                                            <i class="fas fa-gavel" id="deban"></i>
+                                        </button>
+                                    <?php
+                                    }
+                                    ?>
                                 </td>
                             </tr>
                             <?php
@@ -139,11 +151,40 @@ $Administration = new Administration();
 
 
     <!-- Pop-up bannissement -->
-    <div class="bannissement">
+    <div class="bannissement" id="bannissement">
         <div class="pop-up">
             <div class="popup-header">Bannissement !</div>
-            <div class="popup-content"></div>
-            <div class="popup-footer"></div>
+            <div class="popup-content">
+                Êtes-vous sûr(e) de vouloir bannir cet utilisateur ?
+                <br>
+                Une fois banni, il est impossible de revenir en arrière !
+            </div>
+            <div class="popup-footer">
+                <form action="../traitements/bannissement.php" method="post">
+                    <button type="submit" id="oui" name="id">OUI</button>
+                </form>
+                <button type="button" onclick="noBan()">NON</button>
+            </div>
         </div>
     </div>
+
+    <!-- Pop-up débannissement -->
+    <div class="debannissement" id="debannissement">
+        <div class="pop-up">
+            <div class="popup-header">Débannissement !</div>
+            <div class="popup-content">
+                Êtes-vous sûr(e) de vouloir débannir cet utilisateur ?
+                <br>
+                Vous pourrez ensuite rebannir l'utilisateur !
+            </div>
+            <div class="popup-footer">
+                <form action="../traitements/debannissement.php" method="post">
+                    <button type="submit" id="yes" name="idyes">OUI</button>
+                </form>
+                <button type="button" onclick="noDeban()">NON</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../pages/script.js"></script>
 </body>

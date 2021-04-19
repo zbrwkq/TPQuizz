@@ -1,6 +1,8 @@
 <?php
 class Administration extends Modele{
 
+    private $idUtilisateur;
+
     public function membresInscrits(){
         $requete = $this->getBdd()->prepare("SELECT COUNT(idUtilisateur) AS nombreMembre FROM utilisateurs");
         $requete->execute();
@@ -43,4 +45,6 @@ class Administration extends Modele{
         $requete->execute();
         return $requete->fetchAll(PDO::FETCH_ASSOC);
     }
+
+
 }
