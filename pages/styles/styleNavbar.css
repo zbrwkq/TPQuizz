@@ -1,0 +1,8 @@
+#navbar{
+    width: 100%;
+    height: 60px;
+    /* background-color: #ff416d00; */
+    background: linear-gradient(to left, #ff4a2a, #FF416C);
+    position: absolute;
+    padding: 10px 4vh;
+}

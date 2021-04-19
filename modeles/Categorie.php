@@ -17,13 +17,23 @@ class Categorie extends Modele
         }
     }
 
-    public function InitialiserCategorie($idCategorie, $titre, $photo){
+    public function InitialiserCategorie($idCategorie, $titre, $photo, $nbrQuizz = null){
         $this->idCategorie = $idCategorie;
         $this->titre = $titre;
         $this->photo = $photo;
+        $this->nbrQuizz = $nbrQuizz;
     }
     public function getId(){
         return $this->idCategorie;
+    }
+    public function getTitre(){
+        return $this->titre;
+    }
+    public function getPhoto(){
+        return $this->photo;
+    }
+    public function getNbrQuizz(){
+        return $this->nbrQuizz;
     }
 }
 ?>

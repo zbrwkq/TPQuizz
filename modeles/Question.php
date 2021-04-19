@@ -39,7 +39,6 @@ class Question extends Modele
                     $this->reponses[] = $objetReponse;
                 }
         }
-
         public function getId(){
             return $this->idQuestion;
         }
