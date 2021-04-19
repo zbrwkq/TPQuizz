@@ -7,6 +7,7 @@ class Modele{
     }
 }
 
+require_once "../modeles/App.php";
 require_once "../modeles/Quizz.php";
 require_once "../modeles/Categorie.php";
 require_once "../modeles/Question.php";

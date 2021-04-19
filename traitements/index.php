@@ -1,9 +1,6 @@
 <?php
-require_once "../modeles/app.php";
-$topCategories = new Top;
+require_once "../modeles/modele.php";
+$topCategories = new App;
 $topCategories->initialiserTopCategorie();
-$topQuizz = new Top;
+$topQuizz = new App;
 $topQuizz->initialiserTopQuizz();
-// echo "<pre>";
-// print_r($topQuizz);
-// echo "</pre>";

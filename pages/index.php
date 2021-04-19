@@ -17,8 +17,8 @@ require_once "navbar.php";
                         ?>
                         <a href="../pages/quizz?id=<?=$quizz["idQuizz"];?>.php" class="card" style="background-image: linear-gradient(to top left, rgba(255, 74, 42, 0.8),rgba(255, 65, 108, 0.8))" data-tilt data-tilt-max="0" data-tilt-glare data-tilt-max-glare="0.8" data-tilt-axis="x" data-tilt data-tilt-reverse="true">
                             <h1><?=$quizz["titre"];?></h1>
-                            <h5>Par <?=$quizz["identifiant"];?></h5>
-                            <h3><?=$quizz["nbrScore"];?></h3>
+                            <h5>Créé par <?=$quizz["identifiant"];?></h5>
+                            <h4>Fini <?=$quizz["nbrScore"];?> fois</h4>
                         </a>
                         <?php
                     }
@@ -31,7 +31,7 @@ require_once "navbar.php";
                 <?php
                 foreach($topCategories->getTopCategorie() as $categorie){
                     ?>
-                    <a href="../pages/categorie?id=<?=$categorie->getId();?>.php" class="card" style="background-image: linear-gradient(to top left, rgba(255, 74, 42, 0.3),rgba(255, 65, 108, 0.3)),url('<?=$categorie->getPhoto();?>')" data-tilt data-tilt-max="0" data-tilt-glare data-tilt-max-glare="0.8" data-tilt-axis="x" data-tilt data-tilt-reverse="true">
+                    <a href="../pages/categorie.php?id=<?=$categorie->getId();?>" class="card" style="background-image: linear-gradient(to top left, rgba(255, 74, 42, 0.3),rgba(255, 65, 108, 0.3)),url('<?=$categorie->getPhoto();?>')" data-tilt data-tilt-max="0" data-tilt-glare data-tilt-max-glare="0.8" data-tilt-axis="x" data-tilt data-tilt-reverse="true">
                         <h1><?=$categorie->getTitre();?></h1>
                         <h5>nombre de quizz : </h5>
                         <h3><?=$categorie->getNbrQuizz();?></h3>
