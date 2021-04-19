@@ -21,7 +21,7 @@ if(!empty($_POST["connexion"]) && $_POST["connexion"] == 1){
         if($connexion > 0){
             $utilisateur = $connexion;
             // Vérification si le mdp entrer correspond au mdp dans la BDD.
-            if(!password_verify($mdp,$utilisateur["mdp"])){
+            if(!password_verify($mdp, $utilisateur["mdp"])){
                 $erreurs[] = "Le mot de passe saisi est icorrect";
             }
         }

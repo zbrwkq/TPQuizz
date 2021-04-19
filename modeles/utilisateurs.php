@@ -2,7 +2,6 @@
 
 class Utilisateur extends Modele{
 
-
     private $idUtilisateur;
     private $identifiant;
     private $autorisation;
