@@ -3,6 +3,7 @@ require_once "../modeles/modele.php";
 
 $Administration = new Administration();
 $Utilisateur = new Utilisateur();
+$Categorie = new Categorie();
 
 if(!empty($_POST["filtre"])){
     $membres = $Administration->recherche($_POST["filtre"]);
@@ -54,4 +55,17 @@ if(!empty($_POST["envoi"]) && $_POST["envoi"] == 1){
     }
 }
 
+
+if(!empty($_POST["categorie"]) && $_POST["categorie"] == 1){
+    if(!empty($_POST["nomCategorie"]) && !empty($_FILES["photoCategorie"]) && !empty($_FILES["photoCategorie"]["name"])){
+        extract($_POST);
+
+        $target_dir = "../pages/images/profils/";
+        $target_file = $target_dir . ($_FILES["photoCategorie"]["name"]);
+        $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+        move_uploaded_file($_FILES["photoCategorie"]["tmp_name"], $target_file);
+
+        $Categorie->addCategorie($nomCategorie, $target_file);
+    }
+}
 ?>

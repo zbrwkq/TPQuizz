@@ -196,6 +196,71 @@ body .contenu .contenu-content2{
     height: 80%;
     display: flex;
 }
+body .contenu .contenu-content3{
+    width: 100%;
+    height: 90%;
+    display: flex;
+}
+body .contenu .contenu-content3 .content3-left, body .contenu .contenu-content3 .content3-right{
+    width: 50%;
+    height: 100%;
+}
+body .contenu .contenu-content3 .content3-left .left-header{
+    width: 100%;
+    height: 10%;
+}
+body .contenu .contenu-content3 .content3-left .left-content{
+    width: 100%;
+    height: 90%;
+}
+body .contenu .contenu-content3 .content3-left .left-content form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+body .contenu .contenu-content3 .content3-left .left-content form input{
+    width: 75%;
+    height: 40px;
+    border: none;
+    background: #eee;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 10px 0;
+}
+body .contenu .contenu-content3 .content3-left .left-content button{
+    width: 75%;
+    height: 40px;
+    border: none;
+    background-color: var(--color2);
+    border-radius: 20px;
+    margin-top: auto;
+    margin-bottom: 20px;
+    color: #fff;
+}
+body .contenu .contenu-content3 .content3-right .right-header{
+    width: 100%;
+    height: 10%;
+}
+body .contenu .contenu-content3 .content3-right .right-content{
+    width: 100%;
+    height: 90%;
+    max-height: 90%;
+    overflow-y: scroll;
+}
+body .contenu .contenu-content3 .content3-right .right-content table{
+    width: 100%;
+}
+body .contenu .contenu-content3 .content3-right .right-content table, body .contenu .contenu-content3 .content3-right .right-content tr, body .contenu .contenu-content3 .content3-right .right-content th, body .contenu .contenu-content3 .content3-right .right-content td{
+    border: 2px solid #111;
+    border-collapse: collapse;
+}
+body .contenu .contenu-content3 .content3-right .right-content th, body .contenu .contenu-content3 .content3-right .right-content td{
+    padding: 5px;
+    height: 35px;
+    text-align: center;
+}
 body .contenu .contenu-content2 .content2-left, body .contenu .contenu-content2 .content2-right{
     width: 50%;
     height: 100%;

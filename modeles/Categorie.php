@@ -35,5 +35,16 @@ class Categorie extends Modele
     public function getNbrQuizz(){
         return $this->nbrQuizz;
     }
+
+    public function addCategorie($titre, $photo){
+        $requete = $this->getBdd()->prepare("INSERT INTO categories(titre, photo) VALUES(?, ?)");
+        $requete->execute([$titre, $photo]);
+    }
+
+    public function recuperationCategories(){
+        $requete = $this->getBdd()->prepare("SELECT * FROM categories");
+        $requete->execute();
+        return $requete->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>

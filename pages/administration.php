@@ -22,6 +22,9 @@ $Administration = new Administration();
                 <a href="#">
                     <li>Quizz</li>
                 </a>
+                <a href="../pages/administration.php?pages=categorie">
+                    <li>Catégorie</li>
+                </a>
             </ul>
         </div>
         <div class="navigation-footer">
@@ -195,6 +198,51 @@ $Administration = new Administration();
                     </div>
                 </div>
 
+                <?php
+            }
+
+
+            if($_GET["pages"] == "categorie"){
+                ?>
+                <div class="contenu-header">
+                    <h1>Catégories</h1>
+                </div>
+                <div class="contenu-content3">
+                    <div class="content3-left">
+                        <div class="left-header">
+                            <h4>Ajouter une catégorie</h4>
+                        </div>
+                        <div class="left-content">
+                            <form action="#" method="post" enctype="multipart/form-data">
+                                <input type="text" name="nomCategorie" placeholder="Nom de la catégorie..." required>
+                                <input type="file" name="photoCategorie" required>
+
+                                <button type="submit" name="categorie" value="1">Créer la catégorie</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="content3-right">
+                        <div class="right-header">
+                            <h4>Liste des catégories</h4>
+                        </div>
+                        <div class="right-content">
+                            <table>
+                                <th>N°</th>
+                                <th>Libelle</th>
+                                <?php
+                                foreach($Categorie->recuperationCategories() as $categorie){
+                                    ?>
+                                    <tr>
+                                        <td><?=$categorie["idCategorie"];?></td>
+                                        <td><?=$categorie["titre"];?></td>
+                                    </tr>
+                                    <?php
+                                }
+                                ?>
+                            </table>
+                        </div>
+                    </div>
+                </div>
                 <?php
             }
             ?>
