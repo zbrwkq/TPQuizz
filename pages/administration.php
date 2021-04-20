@@ -107,18 +107,32 @@ $Administration = new Administration();
                         <th>N°</th>
                         <th>Identifiant</th>
                         <th>Grade</th>
-                        <th>Actions</th>
+                        <th>Action</th>
                         <?php
                         foreach($membres as $membre){
                             ?>
                             <tr>
                                 <td><?=$membre["idUtilisateur"];?></td>
-                                <td><?=$membre["identifiant"];?></td>
-                                <td><?=$membre["autorisation"];?></td>
-                                <td>
-                                    <button type="button">Modifier</button>
+                                <td id="identifiant">
+                                    <span id="p<?=$membre["idUtilisateur"];?>"><?=$membre["identifiant"];?></span>
+                                    <i class="fas fa-edit" title="Modifier" onclick="showInput('inputIdentifiant<?=$membre['idUtilisateur'];?>', 'p<?=$membre['idUtilisateur'];?>')"></i>
+                                    <input type="hidden" name="identifiant" id="inputIdentifiant<?=$membre["idUtilisateur"];?>" placeholder="Identifiant..." value="<?=$membre["identifiant"];?>">
+                                </td>
+                                <td id="grade">
+                                    <span id="g<?=$membre["idUtilisateur"];?>">
                                     <?php
-                                    if($membre["autorisation"] == 1){
+                                        $Administration->autorisationString($membre["autorisation"]);
+                                    ?>
+                                    </span>
+                                    <i class="fas fa-edit" title="Modifier" onclick="showSelect('autorisation<?=$membre['idUtilisateur'];?>', 'g<?=$membre['idUtilisateur'];?>')"></i>
+                                    <select name="autorisation" id="autorisation<?=$membre["idUtilisateur"];?>">
+                                        <option value="1">Membre</option>
+                                        <option value="2">Administrateur</option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <?php
+                                    if($membre["autorisation"] == 1 || $membre["autorisation"] == 2){
                                     ?>
                                         <button type="submit" title="Bannir" onclick="popupBannissement(<?=$membre['idUtilisateur'];?>)">
                                             <i class="fas fa-gavel"></i>
@@ -141,11 +155,51 @@ $Administration = new Administration();
                     </table>
                 </div>
                 <div class="contenu-footer">
-
+                    <a href="../pages/administration.php?pages=addUser">Ajouter un utilisateur</a>
                 </div>
                 <?php
             }
+
+
+            if($_GET["pages"] == "addUser"){
+                ?>
+                <div class="contenu-header">
+                    <h1>Ajouter un utilisateur</h1>
+                </div>
+                <div class="contenu-content2">
+                    <div class="content2-left">
+                        <div class="left1">
+                            <p>Pour ajouter un utilisateur, tout les champs ci-dessous sont requis. Vous pourrez, en tant qu'Administrateur, modifier certaines informations par la suite.</p>
+                        </div>
+                        <div class="left2">
+                            <form action="#" method="post">
+                                <input type="text" name="addIdentifiant" id="addIdentifiant" placeholder="Identifiant..." required>
+                                <input type="password" name="addMdp" id="addMdp" placeholder="Mot de passe..." required>
+                                <select name="addAutorisation" id="addAutorisation">
+                                    <option value="1">Membre</option>
+                                    <option value="2">Administrateur</option>
+                                </select>
+                                <select name="questionSecrete" id="questionSecrete">
+                                    <option value="1">Dans quelle ville êtes-vous né(e) ?</option>
+                                    <option value="2">Combien avez-vous de frère(s) et soeur(s) ?</option>
+                                    <option value="3">Quel surnom vous donne vos proches ?</option>
+                                </select>
+                                <input type="text" name="reponseSecrete" id="reponseSecrete" placeholder="Réponse..." required>
+
+                                <button type="submit" name="envoi" value="1">Ajouter / Enregistrer</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="content2-right">
+                        <img src="../pages/images/imagesConnexion/img4.svg" alt="Illustration" width="400">
+                    </div>
+                </div>
+
+                <?php
+            }
             ?>
+
+            
         </div>
     </div>
 

@@ -46,5 +46,17 @@ class Administration extends Modele{
         return $requete->fetchAll(PDO::FETCH_ASSOC);
     }
 
-
+    public function autorisationString($autorisation){
+        switch($autorisation){
+            case 0:
+                echo "Banni";
+                break;
+            case 1:
+                echo "Membre";
+                break;
+            case 2:
+                echo "Administrateur";
+                break;
+        }
+    }
 }
