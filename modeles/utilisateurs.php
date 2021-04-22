@@ -71,6 +71,7 @@ class Utilisateur extends Modele{
         $requete->execute([$idUtilisateur]);
     }
 
+
     // public function questionSecrete(){
         // extract($_POST);
         // $requete = $this->getBdd()->prepare("INSERT INTO secret(idQuestionSecrete, reponse) VALUES(?, ?)");

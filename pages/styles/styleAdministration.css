@@ -191,6 +191,163 @@ body .contenu .contenu-content{
     max-height: 80%;
     overflow-y: scroll;
 }
+body .contenu .contenu-content2{
+    width: 100%;
+    height: 80%;
+    display: flex;
+}
+body .contenu .contenu-content3{
+    width: 100%;
+    height: 90%;
+    display: flex;
+}
+body .contenu .contenu-content4{
+    width: 100%;
+    height: 90%;
+}
+body .contenu .contenu-content4 table{
+    width: 100%;
+}
+body .contenu .contenu-content4 table, body .contenu .contenu-content4 tr, body .contenu .contenu-content4 th, body .contenu .contenu-content4 td{
+    border: 2px solid #111;
+    border-collapse: collapse;
+}
+body .contenu .contenu-content4 th, body .contenu .contenu-content4 td{
+    padding: 5px;
+    text-align: center;
+}
+body .contenu .contenu-content4 td:nth-last-child(-n+1){
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+body .contenu .contenu-content4 td a#voir{
+    text-decoration: none;
+    color: #fff;
+    background: var(--color1);
+    border-radius: 5px;
+    padding: 5px;
+    float: right;
+    width: 25%;
+}
+
+body .contenu .contenu-content3 .content3-left, body .contenu .contenu-content3 .content3-right{
+    width: 50%;
+    height: 100%;
+}
+body .contenu .contenu-content3 .content3-left .left-header{
+    width: 100%;
+    height: 10%;
+}
+body .contenu .contenu-content3 .content3-left .left-content{
+    width: 100%;
+    height: 90%;
+}
+body .contenu .contenu-content3 .content3-left .left-content form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+body .contenu .contenu-content3 .content3-left .left-content form input{
+    width: 75%;
+    height: 40px;
+    border: none;
+    background: #eee;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 10px 0;
+}
+body .contenu .contenu-content3 .content3-left .left-content button{
+    width: 75%;
+    height: 40px;
+    border: none;
+    background-color: var(--color2);
+    border-radius: 20px;
+    margin-top: auto;
+    margin-bottom: 20px;
+    color: #fff;
+}
+body .contenu .contenu-content3 .content3-right .right-header{
+    width: 100%;
+    height: 10%;
+}
+body .contenu .contenu-content3 .content3-right .right-content{
+    width: 100%;
+    height: 90%;
+    max-height: 90%;
+    overflow-y: scroll;
+}
+body .contenu .contenu-content3 .content3-right .right-content table{
+    width: 100%;
+}
+body .contenu .contenu-content3 .content3-right .right-content table, body .contenu .contenu-content3 .content3-right .right-content tr, body .contenu .contenu-content3 .content3-right .right-content th, body .contenu .contenu-content3 .content3-right .right-content td{
+    border: 2px solid #111;
+    border-collapse: collapse;
+}
+body .contenu .contenu-content3 .content3-right .right-content th, body .contenu .contenu-content3 .content3-right .right-content td{
+    padding: 5px;
+    height: 35px;
+    text-align: center;
+}
+body .contenu .contenu-content2 .content2-left, body .contenu .contenu-content2 .content2-right{
+    width: 50%;
+    height: 100%;
+}
+body .contenu .contenu-content2 .content2-left .left1{
+    width: 100%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+}
+body .contenu .contenu-content2 .content2-left .left2{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+body .contenu .contenu-content2 .content2-left .left2 button{
+    margin-top: auto;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background: var(--color2);
+    font-size: 16px;
+    color: #fff;
+    cursor: pointer;
+    width: 100%;
+}
+body .contenu .contenu-content2 .content2-right{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+body .contenu .contenu-content2 input, body .contenu .contenu-content2 select{
+    margin: 10px 0;
+}
+body .contenu .contenu-content2 input{
+    width: 100%;
+    height: 35px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #eee;
+    outline: none;
+    font-size: 16px;
+}
+body .contenu .contenu-content2 select{
+    width: 100%;
+    height: 35px;
+    font-size: 16px;
+    border: none;
+    background: #eee;
+    padding: 0 10px;
+    border-radius: 5px;
+    outline: none;
+}
 body .contenu .contenu-content::-webkit-scrollbar{
     background-color: #ddd;
     width: 15px;
@@ -217,6 +374,9 @@ body .contenu .contenu-content td{
     text-align: center;
     padding: 5px;
 }
+body .contenu .contenu-content td select{
+    display: none;
+}
 body .contenu .contenu-content td:nth-last-child(-n+1){
     display: flex;
     align-items: center;
@@ -230,17 +390,16 @@ body .contenu .contenu-content td i{
     color: #fff;
     width: 100%;
 }
-body .contenu .contenu-content td button:nth-child(1){
-    background: orange;
-    padding: 6px;
-    border-radius: 5px;
-    color: #fff;
-    border: none;
-    width: 30%;
-    margin-right: 10px;
+body .contenu .contenu-content td#identifiant i, body .contenu .contenu-content td#grade i{
+    width: auto;
+    height: auto;
     cursor: pointer;
+    font-size: 10px;
+    background: none;
+    color: #111;
+    float: right;
 }
-body .contenu .contenu-content td button:nth-child(2){
+body .contenu .contenu-content td button{
     border: none;
     width: 30%;
     cursor: pointer;
@@ -256,6 +415,18 @@ body .contenu .contenu-content td i#deban{
 body .contenu .contenu-footer{
     width: 100%;
     height: 10%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+body .contenu .contenu-footer a{
+    padding: 5px 10px;
+    cursor: pointer;
+    border: none;
+    border-radius: 20px;
+    background: var(--color2);
+    color: #fff;
+    text-decoration: none;
 }
 
 

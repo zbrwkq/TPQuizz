@@ -65,5 +65,25 @@ class Quizz extends Modele
             $this->questions[] = $question;
         }
 
+
+
+
+
+
         public function removeQuestion(){}
+
+        public function refuserQuizz($idQuizz){
+            $requete = $this->getBdd()->prepare("DELETE FROM quizz WHERE idQuizz = ?");
+            $requete->execute([$idQuizz]);
+        }
+        public function accepterQuizz($idQuizz){
+            $requete = $this->getBdd()->prepare("UPDATE quizz SET valide = 1 WHERE idQuizz = ?");
+            $requete->execute([$idQuizz]);
+        }
+
+        public function quizzEffectues(){
+            $requete = $this->getBdd()->prepare("SELECT participe.idUtilisateur, participe.idQuizz, participe.score, quizz.titre, utilisateurs.identifiant FROM participe LEFT JOIN quizz USING(idQuizz) LEFT JOIN utilisateurs ON utilisateurs.idUtilisateur = participe.idUtilisateur");
+            $requete->execute();
+            return $requete->fetchAll(PDO::FETCH_ASSOC);
+        }
     }
