@@ -72,6 +72,8 @@ main .right{
 	justify-content: center;
 }
 main .right .right-card{
+    width: 75%;
+	min-width: 260px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -80,6 +82,19 @@ main .right .right-card{
 	padding: 20px;
 	border-radius: 20px;
 	box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.4);
+}
+
+@media screen and (max-width: 770px){
+	main .right .right-card{
+		position: absolute;
+		right: 20px;
+	}
+	main .left .img a{
+		position: absolute;
+		bottom: 10px;
+		left: 20px;
+	}
+	
 }
 main .right img#imgProfil{
 	margin-bottom: 10px;
@@ -92,6 +107,9 @@ main .right h1{
 main .right form{
 	display: flex;
 	flex-direction: column;
+    width: 75%;
+	min-width: 200px;
+
 }
 main .right form input{
 	margin: 10px 0;

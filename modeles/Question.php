@@ -51,9 +51,13 @@ class Question extends Modele
 
         public function setIdQuestion(){}
 
-        public function setQuestion(){}
+        public function setQuestion($question){
+            $this->question = $question;
+        }
 
-        public function addReponse(){}
+        public function addReponse($reponse){
+            $this->reponses[] = $reponse;
+        }
 
         public function removeReponse(){}
     }
