@@ -4,6 +4,7 @@ require_once "header.php";
 $Administration = new Administration();
 ?>
 
+<a href="../pages/administration.php?pages=historique">Retour à l'administration</a>
 <table>
     <th>N°</th>
     <th>Utilisateur</th>

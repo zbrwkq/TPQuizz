@@ -71,6 +71,12 @@ class Utilisateur extends Modele{
         $requete->execute([$idUtilisateur]);
     }
 
+    public function identifiants(){
+        $requete = $this->getBdd()->prepare("SELECT identifiant FROM utilisateurs");
+        $requete->execute();
+        return $requete->fetchAll(PDO::FETCH_ASSOC);
+        // return $requete->rowCount();
+    }
 
     // public function questionSecrete(){
         // extract($_POST);
