@@ -2,51 +2,39 @@
 
 <?php
 require_once "../modeles/Modele.php";
-$Utilisateur = new Utilisateur();
+$utilisateur = new Utilisateur();
 
-$erreurs = [];
+$erreurs = 0;
 
 if(!empty($_POST["connexion"]) && $_POST["connexion"] == 1){
     if(!empty($_POST["identifiant"]) && !empty($_POST["mdp"])){
         extract($_POST);
-
-        if($Utilisateur->selectionUtilisateurs($_POST["identifiant"]) != 1){
-            $erreurs[] = "L'identifiant saisi est incorrect";
+        
+        if(strlen($mdp) < 8){
+            $erreurs ++;
+            header("location:../pages/connexion.php?error=pwlenght");
         }
 
-        $connexion = $Utilisateur->connexion($identifiant, $mdp);
-        if(count($erreurs) == 0){
-            $connexion;
-        }
-        if($connexion > 0){
-            $utilisateur = $connexion;
-            // Vérification si le mdp entrer correspond au mdp dans la BDD.
-            if(!password_verify($mdp, $utilisateur["mdp"])){
-                $erreurs[] = "Le mot de passe saisi est icorrect";
+        if($erreurs === 0){
+            $connexion = $utilisateur->connexion($identifiant);
+            if($connexion > 0){
+                // Vérification si le mdp entrer correspond au mdp dans la BDD.
+                if(!password_verify($mdp, $connexion["mdp"])){
+                    $erreurs ++;
+                    header("location:../pages/connexion.php?error=pwwrong");
+                }
+            }else{
+                $erreurs ++;
+                header("location:../pages/connexion.php?error=idwrong");
             }
         }
     }
 
     // Si le nombre d'erreurs est à 0:
-    if(count($erreurs)=== 0){
+    if($erreurs === 0){
         // On connecte l'utilisateur avec une session et on le redirige vers la page correspondante à son grade.
-        $_SESSION = $utilisateur;
+        $_SESSION= $connexion;
         header("location:../pages/index.php");
-    }else{
-    // Affichage des erreurs possibles
-        ?>
-        <div class="alert alert-danger mt-3" style="z-index:999">
-            Erreur<?=(count($erreurs)>1 ? "s" :"")?> : 
-            <?php
-                foreach($erreurs as $erreur){
-                    echo($erreur);
-                    ?>
-                    <br>
-                    <?php
-                }
-            ?>
-        </div>
-<?php
     }
 }
 ?>

@@ -9,7 +9,9 @@ require_once "../traitements/inscription.php";
 	<main>
 		<div class="column left">
 			<div class="wave"></div>
-			<img id="logoTopQuizz" src="images/logo/logo.svg" alt="Logo de TopQuizz" width="220">
+			<a href="../pages/index.php">
+				<img id="logoTopQuizz" src="images/logo/logo.svg" alt="Logo de TopQuizz" width="220">
+			</a>
 			<div class="img">
 				<img src="images/imagesConnexion/img1.svg" alt="Illustration d'inscription" width="500">
 				<a href="../pages/connexion.php">SE CONNECTER</a>

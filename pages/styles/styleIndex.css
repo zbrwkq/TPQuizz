@@ -16,7 +16,6 @@ body{
     display: flex;
     justify-content: center;
     background: linear-gradient(to left, var(--color1), var(--color2));
-    /* background-color: grey; */
 }
 a{
     text-decoration: none;
@@ -47,13 +46,21 @@ section{
 }
 section div{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 100%;
     flex-wrap: wrap;
     
 }
+.glisse{
+    display: inline-block;
+    transition: 0.2s ease-in-out transform;
+
+}
+.glisse:hover{
+    transform: translate(5px);
+}
 .card{
-    width: 40%;
+    width: 80%;
     max-width: 190px;
     min-width: 160px;
     height: 50vw;

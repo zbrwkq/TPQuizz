@@ -9,7 +9,16 @@ require_once "navbar.php";
 ?>
 <body>
     <main>
-    <a href="../pages/index.php">&#x25C4; retour</a>
+        <a href="../pages/index.php">&#x25C4; retour</a>
+        <?php
+            if(!empty($_SESSION["idUtilisateur"])){
+                ?>
+                <section>
+                    <h1>Créer un nouveau quizz <a href="../pages/nouveauQuizz.php" class="glisse">&#9654;</a></h1>
+                </section>
+                <?php
+            }
+        ?>
         <section>
             <h1>Liste des catégories</h1>
             <div>
