@@ -3,6 +3,8 @@ class Administration extends Modele{
 
     private $idUtilisateur;
     private $idQuizz;
+    private $identifiant;
+    private $grade;
 
     public function membresInscrits(){
         $requete = $this->getBdd()->prepare("SELECT COUNT(idUtilisateur) AS nombreMembre FROM utilisateurs");
@@ -76,6 +78,18 @@ class Administration extends Modele{
     public function recuperationReponsesQuestionsQuizzEnAttente($idQuestion){
         $requete = $this->getBdd()->prepare("SELECT idReponse, reponse FROM reponses LEFT JOIN questions USING(idQuestion) WHERE idQuestion = ?");
         $requete->execute([$idQuestion]);
+        return $requete->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
+    public function updateProfil($identifiant, $grade, $idUtilisateur){
+        $requete = $this->getBdd()->prepare("UPDATE utilisateurs SET identifiant = ?, autorisation = ? WHERE idUtilisateur = ?");
+        $requete->execute([$identifiant, $grade, $idUtilisateur]);
+    }
+
+    public function reponsesUtilisateursQuizz(){
+        $requete = $this->getBdd()->prepare("SELECT repondre.idUtilisateur, repondre.idQuestion, repondre.idReponse, utilisateurs.identifiant, reponses.reponse, BonneReponse.reponse AS BonneReponse FROM repondre LEFT JOIN utilisateurs ON repondre.idUtilisateur = utilisateurs.idUtilisateur LEFT JOIN questions ON repondre.idQuestion = questions.idQuestion LEFT JOIN reponses ON repondre.idReponse = reponses.idReponse LEFT JOIN reponses as BonneReponse ON questions.idQuestion = BonneReponse.idQuestion AND BonneReponse.vraie = 1");
+        $requete->execute();
         return $requete->fetchAll(PDO::FETCH_ASSOC);
     }
 }

@@ -5,7 +5,6 @@ class Utilisateur extends Modele{
     private $idUtilisateur;
     private $identifiant;
     private $autorisation;
-    private $mdp;
     private $questionSecrete;
     private $reponseSecrete;
 
@@ -13,15 +12,25 @@ class Utilisateur extends Modele{
 
     public function __construct($idUtilisateur = null){
         if($idUtilisateur !== null){
-            $requete = $this->getBdd()->prepare("SELECT * FROM utilisateurs WHERE idUtilisateur = ?");
+            $requete = $this->getBdd()->prepare("SELECT * FROM utilisateur LEFT JOIN secret USING(idUtilisateur) WHERE idUtilisateur = ?");
             $requete->execute([$idUtilisateur]);
             $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
-
             $this->idUtilisateur = $utilisateur["idUtilisateur"];
             $this->identifiant = $utilisateur["identifiant"];
             $this->autorisation = $utilisateur["autorisation"];
+            $this->photoProfil = $utilisateur["photoProfil"];
+            $this->questionSecrete = $utilisateur["questionSecrete"];
+            $this->reponseSecrete = $utilisateur["reponseSecrete"];
         }
     }
+    
+    public function initialiserUtilisateur($idUtilisateur, $identifiant, $autorisation, $photoProfil){
+        $this->idUtilisateur = $idUtilisateur;
+        $this->identifiant = $identifiant;
+        $this->autorisation = $autorisation;
+        $this->photoProfil = $photoProfil;
+    }
+
 
     public function inscription($identifiant, $mdp, $autorisation, $photoProfil, $questionSecrete, $reponseSecrete){
         $mdp = password_hash($mdp, PASSWORD_BCRYPT);
@@ -32,17 +41,16 @@ class Utilisateur extends Modele{
         $requete->execute([$questionSecrete, $reponseSecrete]);
     }
 
-    public function connexion($identifiant, $mdp){
-        $requete = $this->getBdd()->prepare("SELECT * FROM utilisateurs WHERE idUtilisateur = ? AND mdp = ?");
-        $requete->execute([$identifiant, $mdp]);
-        return $requete->fetch(PDO::FETCH_ASSOC);
-        return $requete->rowCount();
-    }
-
-    public function selectionUtilisateurs($identifiant){
-        $requete = $this->getBdd()->prepare("SELECT identifiant FROM utilisateurs WHERE identifiant = ?");
+    public function connexion($identifiant){
+        $requete = $this->getBdd()->prepare("SELECT * FROM utilisateurs WHERE identifiant = ?");
         $requete->execute([$identifiant]);
-        return $requete->rowCount();
+        return $requete->fetch(PDO::FETCH_ASSOC);
+    }
+    public function selectionUtilisateurs($identifiant){
+        $requete = $this->getBdd()->prepare("SELECT * FROM utilisateurs WHERE identifiant = ?");
+        $requete->execute([$identifiant]);
+        $requete->fetchAll(PDO::FETCH_ASSOC);
+        return count($requete);
     }
 
     public function connexionUtilisateur($identifiant, $mdp){
@@ -63,6 +71,7 @@ class Utilisateur extends Modele{
         $requete->execute([$idUtilisateur]);
     }
 
+
     // public function questionSecrete(){
         // extract($_POST);
         // $requete = $this->getBdd()->prepare("INSERT INTO secret(idQuestionSecrete, reponse) VALUES(?, ?)");
@@ -76,33 +85,26 @@ class Utilisateur extends Modele{
         // $requete->execute([$idQuestionSecrete, $reponseQuestionSecrete]);
     // }
 
-    // public function utilisateurs(){
-    //     $requete = $this->getBdd()->prepare("SELECT identifiant FROM utilisateurs");
-    //     $requete->execute();
-    //     return $requete->fetchAll(PDO::FETCH_ASSOC);
-    //     return $requete->rowCount();
-    // }
 
     public function getIdUtilisateur(){
-        
+        return $this->idUtilisateur;
     }
     public function getIdentifiant(){
+        return $this->identifiant;
 
     }
-    public function getIdRole(){
-
-    }
-    public function getEmail(){
+    public function getAutorisation(){
+        return $this->autorisation;
 
     }
     public function getMotDePasse(){
 
     }
     public function getQuestionSecrete(){
-
+        return $this->questionSecrete;
     }
     public function getReponseSecrete(){
-
+        return $this->reponseSecrete;
     }
 
     public function setIdUtilisateur(){}

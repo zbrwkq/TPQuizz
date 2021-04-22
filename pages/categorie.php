@@ -10,6 +10,15 @@ require_once "navbar.php";
 <body>
     <main>
         <a href="../pages/categories.php">&#x25C4; retour</a>
+        <?php
+        if(!empty($_SESSION["idUtilisateur"])){
+            ?>
+            <section>
+                <h1>Créer un nouveau quizz <a href="../pages/nouveauQuizz.php?idCategorie=<?=$_GET["id"];?>" class="glisse">&#9654;</a></h1>
+            </section>
+            <?php
+        }
+        ?>
         <section>
             <h1><?=$listeQuizz->getListeQuizz()[0]["titre"];?></h1>
             <div>

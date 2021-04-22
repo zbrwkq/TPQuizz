@@ -3,6 +3,7 @@ require_once "header.php";
 require_once "../traitements/administration.php";
 
 $Administration = new Administration();
+$Quizz = new Quizz();
 ?>
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
@@ -24,6 +25,9 @@ $Administration = new Administration();
                 </a>
                 <a href="../pages/administration.php?pages=categorie">
                     <li>Catégorie</li>
+                </a>
+                <a href="../pages/administration.php?pages=historique">
+                    <li>Historique</li>
                 </a>
             </ul>
         </div>
@@ -291,6 +295,37 @@ $Administration = new Administration();
                 <?php
             }
 
+            if($_GET["pages"] == "historique"){
+                ?>
+                <div class="contenu-header">
+                    <h1>Quizz effectués</h1>
+                </div>
+                <div class="contenu-content">
+                    <table>
+                        <th>N°</th>
+                        <th>Libelle</th>
+                        <th>Utilisateur</th>
+                        <th>Score</th>
+                        <th>Réponses</th>
+                        <?php
+                        foreach($Quizz->quizzEffectues() as $quizzEffectue){
+                            ?>
+                            <tr>
+                                <td><?=$quizzEffectue["idQuizz"];?></td>
+                                <td><?=$quizzEffectue["titre"];?></td>
+                                <td><?=$quizzEffectue["identifiant"];?></td>
+                                <td><?=$quizzEffectue["score"];?></td>
+                                <td>
+                                    <a href="../pages/historique.php?user=<?=$quizzEffectue["idQuizz"];?>">Voir les réponses</a>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                        ?>
+                    </table>
+                </div>
+                <?php
+            }
             ?>
 
             

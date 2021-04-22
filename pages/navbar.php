@@ -3,4 +3,15 @@
     <a href="../pages/index.php">
         <img src="../pages/images/logo/logo.svg" alt="">
     </a>
+    <?php
+    if(!empty($_SESSION["idUtilisateur"])){
+        ?>
+        <a href="../pages/deconnexion.php">Déconnexion</a>
+        <?php
+    }else{
+        ?>
+        <a href="../pages/connexion.php">Connexion</a>
+        <?php
+    }
+    ?>
 </div>

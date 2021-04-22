@@ -29,6 +29,12 @@ class Quizz extends Modele
                 }
             }
         }
+
+        public function ajoutQuizz(){
+            $requete = $this->getBdd()->prepare("INSERT INTO quizz(titre,idUtilisateur,idCategorie) VALUES(?,?,?)");
+            $requete->execute([]);
+        }   
+
         public function getId(){
             return $this->idQuizz;
         }
@@ -44,11 +50,22 @@ class Quizz extends Modele
 
         public function setId(){}
 
-        public function setTitre(){}
+        public function setTitre($titre){
+            $this->titre = $titre;
+        }
 
-        public function setCategorie(){}
+        public function setCategorie($categorie){
+            $this->categorie = $categorie;
+        }
 
-        public function addQuestion(){}
+        public function addQuestion($question){
+            $this->questions[] = $question;
+        }
+
+
+
+
+
 
         public function removeQuestion(){}
 
@@ -59,5 +76,11 @@ class Quizz extends Modele
         public function accepterQuizz($idQuizz){
             $requete = $this->getBdd()->prepare("UPDATE quizz SET valide = 1 WHERE idQuizz = ?");
             $requete->execute([$idQuizz]);
+        }
+
+        public function quizzEffectues(){
+            $requete = $this->getBdd()->prepare("SELECT participe.idUtilisateur, participe.idQuizz, participe.score, quizz.titre, utilisateurs.identifiant FROM participe LEFT JOIN quizz USING(idQuizz) LEFT JOIN utilisateurs ON utilisateurs.idUtilisateur = participe.idUtilisateur");
+            $requete->execute();
+            return $requete->fetchAll(PDO::FETCH_ASSOC);
         }
     }
