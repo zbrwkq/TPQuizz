@@ -51,4 +51,13 @@ class Quizz extends Modele
         public function addQuestion(){}
 
         public function removeQuestion(){}
+
+        public function refuserQuizz($idQuizz){
+            $requete = $this->getBdd()->prepare("DELETE FROM quizz WHERE idQuizz = ?");
+            $requete->execute([$idQuizz]);
+        }
+        public function accepterQuizz($idQuizz){
+            $requete = $this->getBdd()->prepare("UPDATE quizz SET valide = 1 WHERE idQuizz = ?");
+            $requete->execute([$idQuizz]);
+        }
     }

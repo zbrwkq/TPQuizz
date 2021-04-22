@@ -19,7 +19,7 @@ $Administration = new Administration();
                 <a href="../pages/administration.php?pages=membres">
                     <li>Membres</li>
                 </a>
-                <a href="#">
+                <a href="../pages/administration.php?pages=quizz">
                     <li>Quizz</li>
                 </a>
                 <a href="../pages/administration.php?pages=categorie">
@@ -118,8 +118,6 @@ $Administration = new Administration();
                                 <td><?=$membre["idUtilisateur"];?></td>
                                 <td id="identifiant">
                                     <span id="p<?=$membre["idUtilisateur"];?>"><?=$membre["identifiant"];?></span>
-                                    <i class="fas fa-edit" title="Modifier" onclick="showInput('inputIdentifiant<?=$membre['idUtilisateur'];?>', 'p<?=$membre['idUtilisateur'];?>')"></i>
-                                    <input type="hidden" name="identifiant" id="inputIdentifiant<?=$membre["idUtilisateur"];?>" placeholder="Identifiant..." value="<?=$membre["identifiant"];?>">
                                 </td>
                                 <td id="grade">
                                     <span id="g<?=$membre["idUtilisateur"];?>">
@@ -127,11 +125,6 @@ $Administration = new Administration();
                                         $Administration->autorisationString($membre["autorisation"]);
                                     ?>
                                     </span>
-                                    <i class="fas fa-edit" title="Modifier" onclick="showSelect('autorisation<?=$membre['idUtilisateur'];?>', 'g<?=$membre['idUtilisateur'];?>')"></i>
-                                    <select name="autorisation" id="autorisation<?=$membre["idUtilisateur"];?>">
-                                        <option value="1">Membre</option>
-                                        <option value="2">Administrateur</option>
-                                    </select>
                                 </td>
                                 <td>
                                     <?php
@@ -149,6 +142,7 @@ $Administration = new Administration();
                                     <?php
                                     }
                                     ?>
+                                    <a href="../pages/profil.php?id=<?=$membre["idUtilisateur"];?>">Modifier</a>
                                 </td>
                             </tr>
                             <?php
@@ -162,6 +156,11 @@ $Administration = new Administration();
                 </div>
                 <?php
             }
+
+
+
+
+
 
 
             if($_GET["pages"] == "addUser"){
@@ -197,9 +196,17 @@ $Administration = new Administration();
                         <img src="../pages/images/imagesConnexion/img4.svg" alt="Illustration" width="400">
                     </div>
                 </div>
-
                 <?php
             }
+
+
+
+
+
+
+
+
+
 
 
             if($_GET["pages"] == "categorie"){
@@ -245,6 +252,45 @@ $Administration = new Administration();
                 </div>
                 <?php
             }
+
+
+            if($_GET["pages"] == "quizz"){
+                ?>
+                <div class="contenu-header">
+                    <h1>Quizz à valider</h1>
+                </div>
+                <div class="contenu-content4">
+                    <table>
+                        <th>N°</th>
+                        <th>Titre</th>
+                        <th>Questions</th>
+                        <th>Valider</th>
+                        <?php
+                        foreach($Administration->recuperationQuizzEnAttente() as $quizzEnAttente){
+                            ?>
+                            <tr>
+                                <td><?=$quizzEnAttente["idQuizz"];?></td>
+                                <td><?=$quizzEnAttente["titre"];?></td>
+                                <td>
+                                    <a id="voir" href="../pages/questions.php?pages=<?=$quizzEnAttente["idQuizz"];?>">Voir</a>
+                                </td>
+                                <td>
+                                    <form action="../traitements/accepterQuizz.php" method="post">
+                                        <button type="submit" name="yess" value="<?=$quizzEnAttente["idQuizz"];?>">OUI</button>
+                                    </form>
+                                    <form action="../traitements/deleteQuizz.php" method="post">
+                                        <button type="submit" name="none" value="<?=$quizzEnAttente["idQuizz"];?>">NON</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                        ?>
+                    </table>
+                </div>
+                <?php
+            }
+
             ?>
 
             

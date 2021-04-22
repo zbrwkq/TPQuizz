@@ -2,6 +2,7 @@
 class Administration extends Modele{
 
     private $idUtilisateur;
+    private $idQuizz;
 
     public function membresInscrits(){
         $requete = $this->getBdd()->prepare("SELECT COUNT(idUtilisateur) AS nombreMembre FROM utilisateurs");
@@ -60,5 +61,21 @@ class Administration extends Modele{
         }
     }
 
+    public function recuperationQuizzEnAttente(){
+        $requete = $this->getBdd()->prepare("SELECT idQuizz, titre FROM quizz WHERE valide = ?");
+        $requete->execute([0]);
+        return $requete->fetchAll(PDO::FETCH_ASSOC);
+    }
     
+    public function recuperationQuestionsQuizzEnAttente($idQuizz){
+        $requete = $this->getBdd()->prepare("SELECT idQuestion, question FROM questions LEFT JOIN quizz USING(idQuizz) WHERE idQuizz = ?");
+        $requete->execute([$idQuizz]);
+        return $requete->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function recuperationReponsesQuestionsQuizzEnAttente($idQuestion){
+        $requete = $this->getBdd()->prepare("SELECT idReponse, reponse FROM reponses LEFT JOIN questions USING(idQuestion) WHERE idQuestion = ?");
+        $requete->execute([$idQuestion]);
+        return $requete->fetchAll(PDO::FETCH_ASSOC);
+    }
 }

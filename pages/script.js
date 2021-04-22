@@ -17,16 +17,17 @@ function noDeban(){
 
 
 //Fonction qui permet d'afficher les inputs de modification
-function showInput(idInput, idParagraphe){
+function showInput(idInput, idParagraphe, idAction, idOK){
     input = document.getElementById(idInput);
     text = document.getElementById(idParagraphe);
+    action = document.getElementById(idAction);
+    ok = document.getElementById(idOK);
     if(input.getAttribute("type") == "hidden"){
         input.setAttribute("type","text");
         text.style.display = "none";
-    }else{
-        input.setAttribute("type","hidden");
-        text.style.display = "inline-block";
-    } 
+        action.style.display = "none";
+        ok.style.display = "block";
+    }
 }
 //Fonction qui permet d'afficher le select de modification
 function showSelect(idSelect, idParagraphe){
