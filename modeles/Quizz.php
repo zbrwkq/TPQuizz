@@ -29,11 +29,14 @@ class Quizz extends Modele
                 }
             }
         }
-
-        public function ajoutQuizz(){
+        public function ajoutQuizz($titre,$idCategorie,$idUtilisateur){
             $requete = $this->getBdd()->prepare("INSERT INTO quizz(titre,idUtilisateur,idCategorie) VALUES(?,?,?)");
-            $requete->execute([]);
-        }   
+            $requete->execute([$titre,$idUtilisateur,$idCategorie]);
+            $requete = $this->getBdd()->prepare("SELECT idQuizz FROM quizz ORDER BY idQuizz DESC LIMIT 1");
+            $requete->execute();
+            $idQuizz = $requete->fetch(PDO::FETCH_ASSOC);
+            return $idQuizz["idQuizz"];
+        }
 
         public function getId(){
             return $this->idQuizz;

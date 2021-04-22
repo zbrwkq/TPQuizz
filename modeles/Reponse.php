@@ -22,6 +22,10 @@ class Reponse extends Modele
         $this->reponse = $reponse;
         $this->vraie = $vraie;
     }
+    public function ajoutReponse($idQuestion,$reponse,$vraie){
+        $requete = $this->getBdd()->prepare("INSERT INTO reponses(idQuestion,reponse,vraie) VALUES(?,?,?)");
+        $requete->execute([$idQuestion,$reponse,$vraie]);
+    }
 
     public function getIdReponse(){
         return $this->idReponse;

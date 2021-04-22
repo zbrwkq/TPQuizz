@@ -39,6 +39,15 @@ class Question extends Modele
                     $this->reponses[] = $objetReponse;
                 }
         }
+        public function ajoutQuestion($question, $idQuizz){
+            $requete = $this->getBdd()->prepare("INSERT INTO questions(question, idQuizz) VALUES (?,?)");
+            $requete->execute([$question, $idQuizz]);
+            $requete = $this->getBdd()->prepare("SELECT idQuestion FROM questions ORDER BY idQuestion DESC LIMIT 1");
+            $requete->execute();
+            $idQuestion = $requete->fetch(PDO::FETCH_ASSOC);
+            return $idQuestion["idQuestion"];
+        }
+
         public function getId(){
             return $this->idQuestion;
         }

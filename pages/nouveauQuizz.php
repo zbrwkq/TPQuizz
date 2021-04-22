@@ -1,6 +1,8 @@
 <?php
-require_once "../traitements/nouveauQuizz.php";
 require_once "header.php";
+
+$categories = new App;
+$categories->initialiserListeCategories();
 ?>
 <link rel="stylesheet" href="../pages/styles/styleNouveauQuizz.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
@@ -33,24 +35,24 @@ require_once "navbar.php";
                 <section class="<?=$i;?>">
                     <div class="divQuestion">
                         <h1>Question <?=$i;?></h1>
-                        <input type="text" name="question<?=$i;?>" id="question<?=$i;?>" placeholder="Question <?=$i;?>..." class="inputQuestion" required>
+                        <input type="text" name="question[<?=$i;?>]" id="question<?=$i;?>" placeholder="Question <?=$i;?>..." class="inputQuestion" required>
                     </div>
                     <div class="divReponse">
                         <div>
                             <h3>Réponse 1</h3>
-                            <input type="text" name="reponse<?=$i;?>-1" id="reponse<?=$i;?>-1" placeholder="Réponse bonne..." required>
+                            <input type="text" name="reponse[<?=$i;?>][]" id="reponse<?=$i;?>-1" placeholder="Réponse bonne..." required>
                         </div>
                         <div>
                             <h3>Réponse 2</h3>
-                            <input type="text" name="reponse<?=$i;?>-2" id="reponse<?=$i;?>-2" placeholder="Réponse fausse..." required>
+                            <input type="text" name="reponse[<?=$i;?>][]" id="reponse<?=$i;?>-2" placeholder="Réponse fausse..." required>
                         </div>
                         <div>
                             <h3>Réponse 3</h3>
-                            <input type="text" name="reponse<?=$i;?>-3" id="reponse<?=$i;?>-3" placeholder="Réponse fausse..." required>
+                            <input type="text" name="reponse[<?=$i;?>][]" id="reponse<?=$i;?>-3" placeholder="Réponse fausse..." required>
                         </div>
                         <div>
                             <h3>Réponse 4</h3>
-                            <input type="text" name="reponse<?=$i;?>-4" id="reponse<?=$i;?>-4" placeholder="Réponse fausse..." required>
+                            <input type="text" name="reponse[<?=$i;?>][]" id="reponse<?=$i;?>-4" placeholder="Réponse fausse..." required>
                         </div>
                         <div onclick="lock(<?=$i;?>)" class="lock">V</div>
                     </div>
