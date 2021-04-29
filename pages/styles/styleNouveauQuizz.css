@@ -49,10 +49,10 @@ section{
     margin: 0px 0px 20px 0;
     background-color: rgba(128, 128, 128, 0.1);
 	overflow-y: hidden;
-	transition: 1s ease-out max-height;
+	transition: 3s ease-out max-height;
 }
 section:focus-within{
-	max-height: 500px;
+	max-height: 1500px;
 }
 .divReponse{
 	position: relative;

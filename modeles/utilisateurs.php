@@ -7,7 +7,6 @@ class Utilisateur extends Modele{
     private $autorisation;
     private $questionSecrete;
     private $reponseSecrete;
-
     private $photoProfil;
 
     public function __construct($idUtilisateur = null){
@@ -49,7 +48,7 @@ class Utilisateur extends Modele{
     public function selectionUtilisateurs($identifiant){
         $requete = $this->getBdd()->prepare("SELECT * FROM utilisateurs WHERE identifiant = ?");
         $requete->execute([$identifiant]);
-        $requete->fetchAll(PDO::FETCH_ASSOC);
+        $requete = $requete->fetchAll(PDO::FETCH_ASSOC);
         return count($requete);
     }
 

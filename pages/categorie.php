@@ -28,7 +28,7 @@ require_once "navbar.php";
                         continue;
                     }
                         ?>
-                        <a href="../pages/quizz?id=<?=$quizz["idQuizz"];?>.php" class="card" style="background-image: linear-gradient(to top left, rgba(255, 74, 42, 0.8),rgba(255, 65, 108, 0.8))" data-tilt data-tilt-max="0" data-tilt-glare data-tilt-max-glare="0.8" data-tilt-axis="x" data-tilt data-tilt-reverse="true">
+                        <a href="../pages/quizz.php?id=<?=$quizz["idQuizz"];?>" class="card" style="background-image: linear-gradient(to top left, rgba(255, 74, 42, 0.8),rgba(255, 65, 108, 0.8))" data-tilt data-tilt-max="0" data-tilt-glare data-tilt-max-glare="0.8" data-tilt-axis="x" data-tilt data-tilt-reverse="true">
                             <h1><?=$quizz["titre"];?></h1>
                             <h5>Créé par <?=$quizz["identifiant"];?></h5>
                             <h4>Fini <?=$quizz["nbrScore"];?> fois</h4>

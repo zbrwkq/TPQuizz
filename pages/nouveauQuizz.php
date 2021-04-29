@@ -1,6 +1,8 @@
 <?php
 require_once "header.php";
-
+if(empty($_SESSION["idUtilisateur"])){
+    header("location:../pages/index.php");
+}
 $categories = new App;
 $categories->initialiserListeCategories();
 ?>

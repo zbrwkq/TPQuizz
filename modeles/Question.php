@@ -48,7 +48,7 @@ class Question extends Modele
             return $idQuestion["idQuestion"];
         }
 
-        public function getId(){
+        public function getIdQuestion(){
             return $this->idQuestion;
         }
         public function getQuestion(){

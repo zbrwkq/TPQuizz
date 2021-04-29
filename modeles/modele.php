@@ -15,4 +15,6 @@ require_once "../modeles/Reponse.php";
 require_once "../modeles/Utilisateurs.php";
 require_once "../modeles/QuestionSecrete.php";
 require_once "../modeles/Administration.php";
+require_once "../modeles/Repondre.php";
+require_once "../modeles/Participe.php";
 ?>
