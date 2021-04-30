@@ -4,6 +4,7 @@ class App extends Modele{
     private $topQuizz= [];
     private $listeCategories = [];
     private $listeQuizz= [];
+    private $listeAmis = [];
 
     public function initialiserTopCategorie(){
         $requete = $this->getBdd()->prepare ("SELECT idCategorie,categories.titre,photo,COUNT(idQuizz) as nbrQuizz FROM categories LEFT JOIN quizz USING(idCategorie) WHERE valide = 1 GROUP BY idCategorie ORDER BY nbrQuizz DESC LIMIT 4");
@@ -58,6 +59,15 @@ class App extends Modele{
             $this->listeQuizz[] = $Quizz;
         }
     }
+    public function initialiserListeAmis($idUtilisateur){
+        $requete = $this->getBdd()->prepare("SELECT * FROM amis WHERE demandeur = ? OR receveur = ?");
+        $requete->execute([$idUtilisateur, $idUtilisateur]);
+        $amis = $requete->fetchAll(PDO::FETCH_ASSOC);
+        foreach($amis as $ami){
+            $objetAmi = new ami($ami["demandeur"], $ami["receveur"], $ami["status"]);
+            $this->listeAmis[] = $objetAmi;
+        }
+    }
 
     public function getTopCategorie(){
         return $this->topCategorie;
@@ -70,6 +80,9 @@ class App extends Modele{
     }
     public function getListeQuizz(){
         return $this->listeQuizz;
+    }
+    public function getListeAmis(){
+        return $this->listeAmis;
     }
 }
 

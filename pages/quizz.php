@@ -31,7 +31,7 @@ require_once "navbar.php";
             <h1>
                 <?=$quizz->getTitre();?>
             </h1>
-            <p>Vous allez répondre a un quizz composé de 10 questions avec un temps imparti de 20 secondes par question.<br>Vous ne pourrez effectuer ce quizz qu'une seule fois donc faites attention, de plus si vous quittez la page la question sera comptée fausse.</p>
+            <p>Vous allez répondre a un quizz composé de 10 questions avec un temps imparti de 20 secondes par question.<br>Vous ne pourrez effectuer ce quizz qu'une seule fois donc faites attention, de plus si vous quittez la page la question sera comptée fausse et vous reprendrez a la question  suivante.</p>
             <div>
                 <a href="../pages/quizz.php?id=<?=$_GET["id"]."&go=1";?>">
                     <button>GO</button>

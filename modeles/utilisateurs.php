@@ -11,15 +11,16 @@ class Utilisateur extends Modele{
 
     public function __construct($idUtilisateur = null){
         if($idUtilisateur !== null){
-            $requete = $this->getBdd()->prepare("SELECT * FROM utilisateur LEFT JOIN secret USING(idUtilisateur) WHERE idUtilisateur = ?");
+            $requete = $this->getBdd()->prepare("SELECT * FROM utilisateurs LEFT JOIN secret USING(idUtilisateur) WHERE idUtilisateur = ?");
             $requete->execute([$idUtilisateur]);
             $utilisateur = $requete->fetch(PDO::FETCH_ASSOC);
             $this->idUtilisateur = $utilisateur["idUtilisateur"];
             $this->identifiant = $utilisateur["identifiant"];
             $this->autorisation = $utilisateur["autorisation"];
             $this->photoProfil = $utilisateur["photoProfil"];
-            $this->questionSecrete = $utilisateur["questionSecrete"];
-            $this->reponseSecrete = $utilisateur["reponseSecrete"];
+            $this->questionSecrete = $utilisateur["idQuestionSecrete"];
+            $this->reponseSecrete = $utilisateur["reponse"];
+
         }
     }
     
@@ -36,8 +37,12 @@ class Utilisateur extends Modele{
         $requete = $this->getBdd()->prepare("INSERT INTO utilisateurs(identifiant, mdp, autorisation, photoProfil) VALUES(?, ?, ?, ?)");
         $requete->execute([$identifiant, $mdp, $autorisation, $photoProfil]);
 
-        $requete = $this->getBdd()->prepare("INSERT INTO secret(idQuestionSecrete, reponse) VALUES(?, ?)");
-        $requete->execute([$questionSecrete, $reponseSecrete]);
+        $requete = $this->getBdd()->prepare("SELECT * FROM `utilisateurs` WHERE identifiant = ? ORDER BY idUtilisateur DESC LIMIT 1");
+        $requete->execute([$identifiant]);
+        $idUtilisateur = $requete->fetch(PDO::FETCH_ASSOC)["idUtilisateur"];
+
+        $requete = $this->getBdd()->prepare("INSERT INTO secret(idUtilisateur, idQuestionSecrete, reponse) VALUES(?, ?, ?)");
+        $requete->execute([$idUtilisateur, $questionSecrete, $reponseSecrete]);
     }
 
     public function connexion($identifiant){
@@ -51,13 +56,6 @@ class Utilisateur extends Modele{
         $requete = $requete->fetchAll(PDO::FETCH_ASSOC);
         return count($requete);
     }
-
-    public function connexionUtilisateur($identifiant, $mdp){
-        $requete = $this->getBdd()->prepare("SELECT * FROM utilisateurs WHERE identifiant = ? AND mdp = ?");
-        $requete->execute([$identifiant, $mdp]);
-        return $requete->fetchAll(PDO::FETCH_ASSOC);
-    }
-
     //Fonction qui banni un utilisateur
     public function banUtilisateur($idUtilisateur){
         $requete = $this->getBdd()->prepare("UPDATE utilisateurs SET autorisation = 0 WHERE idUtilisateur = ?");
@@ -70,26 +68,11 @@ class Utilisateur extends Modele{
         $requete->execute([$idUtilisateur]);
     }
 
-    // public function questionSecrete(){
-        // extract($_POST);
-        // $requete = $this->getBdd()->prepare("INSERT INTO secret(idQuestionSecrete, reponse) VALUES(?, ?)");
-        // if($_POST["questionSecrete"] == "question1"){
-        //     $idQuestionSecrete = 1;
-        // }else if($_POST["questionSecrete"] == "question2"){
-        //     $idQuestionSecrete = 2;
-        // }else{
-        //     $idQuestionSecrete = 3;
-        // }
-        // $requete->execute([$idQuestionSecrete, $reponseQuestionSecrete]);
-    // }
-
-
     public function getIdUtilisateur(){
         return $this->idUtilisateur;
     }
     public function getIdentifiant(){
         return $this->identifiant;
-
     }
     public function getAutorisation(){
         return $this->autorisation;
@@ -103,6 +86,9 @@ class Utilisateur extends Modele{
     }
     public function getReponseSecrete(){
         return $this->reponseSecrete;
+    }
+    public function getphotoProfil(){
+        return $this->photoProfil;
     }
 
     public function setIdUtilisateur(){}
