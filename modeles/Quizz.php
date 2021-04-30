@@ -38,7 +38,7 @@ class Quizz extends Modele
             return $idQuizz["idQuizz"];
         }
 
-        public function getId(){
+        public function getIdQuizz(){
             return $this->idQuizz;
         }
         public function getTitre(){
