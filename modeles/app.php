@@ -60,11 +60,11 @@ class App extends Modele{
         }
     }
     public function initialiserListeAmis($idUtilisateur){
-        $requete = $this->getBdd()->prepare("SELECT * FROM amis WHERE demandeur = ? OR receveur = ?");
+        $requete = $this->getBdd()->prepare("SELECT * FROM amis WHERE idDemandeur = ? OR idReceveur = ?");
         $requete->execute([$idUtilisateur, $idUtilisateur]);
         $amis = $requete->fetchAll(PDO::FETCH_ASSOC);
         foreach($amis as $ami){
-            $objetAmi = new ami($ami["demandeur"], $ami["receveur"], $ami["status"]);
+            $objetAmi = new ami($ami["idDemandeur"], $ami["idReceveur"], $ami["status"]);
             $this->listeAmis[] = $objetAmi;
         }
     }

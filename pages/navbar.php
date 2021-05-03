@@ -5,6 +5,7 @@
     </a>
     <?php
     if(!empty($_SESSION["idUtilisateur"])){
+        $utilisateur = new Utilisateur($_SESSION["idUtilisateur"]);
         ?>
         <a href="../pages/deconnexion.php">Déconnexion</a>
         <?php

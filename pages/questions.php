@@ -42,4 +42,3 @@ foreach($Administration->recuperationQuestionsQuizzEnAttente($_GET["pages"]) as 
         padding: 5px;
     }
 </style>
-<?php

@@ -1,30 +1,30 @@
 <?php
 class Ami extends Modele{
-    private $demandeur;
-    private $receveur;
+    private $idDemandeur;
+    private $idReceveur;
     private $status;
-    public function __construct($demandeur = null, $receveur = null, $status = null)
+    public function __construct($idDemandeur = null, $idReceveur = null, $status = null)
     {
-        if($demandeur != null && $receveur != null && $status != null){
-            $this->demandeur = $demandeur;
-            $this->receveur = $receveur;
+        if($idDemandeur != null && $idReceveur != null && $status != null){
+            $this->idDemandeur = $idDemandeur;
+            $this->idReceveur = $idReceveur;
             $this->status = $status;
         }
     }
     public function initialiserAmi($idDemandeur, $idReceveur){
-        $this->demandeur = $idDemandeur ;
-        $this->demandeur = $idReceveur ;
+        $this->idDemandeur = $idDemandeur ;
+        $this->idReceveur = $idReceveur ;
     }
     public function ajoutAmi(){
-        $requete = $this->getBdd()->prepare("INSERT INTO amis(demandeur,receveur) VALUES(?, ?)");
-        $requete->execute([$this->demandeur, $this->receveur]);
+        $requete = $this->getBdd()->prepare("INSERT INTO amis(idDemandeur,idReceveur) VALUES(?, ?)");
+        $requete->execute([$this->idDemandeur, $this->idReceveur]);
     }
 
-    public function getDemandeur(){
-        return $this->demandeur;
+    public function getIdDemandeur(){
+        return $this->idDemandeur;
     }
-    public function getReceveur(){
-        return $this->receveur;
+    public function getIdReceveur(){
+        return $this->idReceveur;
     }
     public function getStatus(){
         return $this->status;

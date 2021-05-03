@@ -5,6 +5,10 @@ $topCategories = new App;
 $topCategories->initialiserTopCategorie();
 $topQuizz = new App;
 $topQuizz->initialiserTopQuizz();
+if(!empty($_SESSION["idUtilisateur"])){
+    $listeAmis = new App;
+    $listeAmis->initialiserListeAmis($_SESSION["idUtilisateur"]);
+}
 ?>
 <link rel="stylesheet" href="../pages/styles/styleIndex.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
@@ -71,9 +75,26 @@ require_once "navbar.php";
                 </a>
             </div>
         </section>
-        <section>
-            <!-- liste d'amis -->
-        </section>
+        <?php
+        if(!empty($_SESSION["idUtilisateur"])){
+            echo "<section>";
+            if(count($listeAmis->getListeAmis()) > 0){
+                foreach($listeAmis->getAmis as $ami){
+                }
+                ?>
+                <?php
+            }
+            ?>
+                <h1>Ajouter un ami : </h1>
+                <form action="../traitements/ajoutAmi.php" method="post" id="ajoutAmi">
+                    <h5>Identifiant</h5>
+                    <input type="text" name="identifiant" id="identifiant">
+                    <button>Ajouter !</button>
+                </form>
+            <section>;
+            <?php
+        }
+        ?>
     </main>
     <script src="vanilla-tilt.js"></script>
 </body>
