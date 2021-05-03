@@ -1,6 +1,16 @@
 <?php
 require_once "header.php";
 require_once "../traitements/connexion.php";
+
+if(!empty($_GET)){
+    if($_GET["password"] == "change"){
+        ?>
+        <div class="alert alert-success">
+            Votre mot de passe a été changé !
+        </div>
+        <?php
+    }
+}
 ?>
 
 <link rel="stylesheet" href="styles/styleConnexion.css">
@@ -15,7 +25,7 @@ require_once "../traitements/connexion.php";
                         <input type="text" name="identifiant" id="identifiant" placeholder="Identifiant..." required value="<?=!empty($_POST["identifiant"]) ? $_POST["identifiant"] : "";?>">
                         <input type="password" name="mdp" id="mdp" placeholder="Mot de passe..." required>
 
-                        <a href="#">Mot de passe oublié ?</a>
+                        <a href="../pages/mdpOublie.php">Mot de passe oublié ?</a>
                         <button type="submit" name="connexion" value="1">Connexion</button>
                     </form>
                 </div>

@@ -1,12 +1,12 @@
 <?php
 require_once "../modeles/modele.php";
-
 $Utilisateur = new Utilisateur();
-print_r($Utilisateur->identifiants());
-$rowCount = $Utilisateur->identifiants();
-if($_POST["identifiant"]){
-    header("location:../pages/mdpOublie.php?valide=oui");
+$variable = $Utilisateur->connexion($_POST['identifiant']);
+
+if($Utilisateur->mdpOublie($_POST["identifiant"]) == 1){
+    header("location:../pages/newMdp.php?id=" . $variable["idUtilisateur"]);
+
 }else{
-    echo "L'identifiant saisi n'existe pas";
+    header("location:../pages/mdpOublie.php?error=yes");
 }
 ?>

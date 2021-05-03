@@ -3,15 +3,15 @@ VISITEUR :
     connexion - FINI
     consulter les categories de quizz - FINI
     repondre a un quizz - FINI
-    mot de passe oublié  - MODELE FINI, PAGE + TRAITEMENT A FAIRE
+    mot de passe oublié  - FINI
 UTILISATEUR : 
     consulter les categories - FINI
     repondre a un quizz - FINI
     consulter ses scores - FINI 
     créer un quizz - FINI 
-    ajouter des amis  - MODELE FINI, PAGE + TRAITEMENT A FAIRE
+    ajouter des amis  - FINI
     consulter les scores de ses amis - PAS BESOIN DE + DE MODELE, TRAITEMENT + PAGE A FAIRE
 ADMINISTRATEUR : 
-    gerer les utilisateur - 
-    accepter les quizz créés par les utlisateurs - 
-    consulter l'historique des quizz effectués et visualisation des resumés - 
+    gerer les utilisateur - FINI
+    accepter les quizz créés par les utlisateurs - FINI
+    consulter l'historique des quizz effectués et visualisation des resumés - FINI

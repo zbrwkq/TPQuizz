@@ -8,6 +8,7 @@ class Utilisateur extends Modele{
     private $questionSecrete;
     private $reponseSecrete;
     private $photoProfil;
+    private $idAmi;
 
     public function __construct($idUtilisateur = null){
         if($idUtilisateur !== null){
@@ -20,7 +21,6 @@ class Utilisateur extends Modele{
             $this->photoProfil = $utilisateur["photoProfil"];
             $this->questionSecrete = $utilisateur["idQuestionSecrete"];
             $this->reponseSecrete = $utilisateur["reponse"];
-
         }
     }
     
@@ -67,11 +67,21 @@ class Utilisateur extends Modele{
         $requete = $this->getBdd()->prepare("UPDATE utilisateurs SET autorisation = 1 WHERE idUtilisateur = ?");
         $requete->execute([$idUtilisateur]);
     }
-    public function identifiants(){
-        $requete = $this->getBdd()->prepare("SELECT identifiant FROM utilisateurs");
-        $requete->execute();
-        return $requete->fetchAll(PDO::FETCH_ASSOC);
-        // return $requete->rowCount();
+    // public function identifiants(){
+    //     $requete = $this->getBdd()->prepare("SELECT identifiant FROM utilisateurs");
+    //     $requete->execute();
+    //     return $requete->fetchAll(PDO::FETCH_ASSOC);
+    // }
+
+    public function mdpOublie($identifiant){
+        $requete = $this->getBdd()->prepare("SELECT identifiant FROM utilisateurs WHERE identifiant = ?");
+        $requete->execute([$identifiant]);
+        return $requete->rowCount();
+    }
+
+    public function updatePassword($mdp, $idUtilisateur){
+        $requete = $this->getBdd()->prepare("UPDATE utilisateurs SET mdp = ? WHERE idUtilisateur = ?");
+        $requete->execute([$mdp, $idUtilisateur]);
     }
 
     public function getIdUtilisateur(){
@@ -97,8 +107,12 @@ class Utilisateur extends Modele{
         return $this->photoProfil;
     }
 
-    public function setIdUtilisateur(){}
-    public function setIdentifiant(){}
+    public function setIdUtilisateur(){
+        
+    }
+    public function setIdentifiant($identifiant){
+        $this->identifiant = $identifiant;
+    }
     public function setIdRole(){}
     public function setEmail(){}
     public function setMotDePasse(){}

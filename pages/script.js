@@ -42,3 +42,7 @@ function showSelect(idSelect, idParagraphe){
         text.style.display = "inline-block";
     }
 }
+
+function addFriend(id){
+    document.getElementById(id).style.display = "none";
+}
