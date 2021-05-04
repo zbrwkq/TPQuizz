@@ -146,7 +146,7 @@ $Quizz = new Quizz();
                                     <?php
                                     }
                                     ?>
-                                    <a href="../pages/profil.php?id=<?=$membre["idUtilisateur"];?>">Modifier</a>
+                                    <a href="../pages/ficheUtilisateur.php?id=<?=$membre["idUtilisateur"];?>">Modifier</a>
                                 </td>
                             </tr>
                             <?php

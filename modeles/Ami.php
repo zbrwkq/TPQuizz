@@ -5,7 +5,7 @@ class Ami extends Modele{
     private $status;
     public function __construct($idDemandeur = null, $idReceveur = null, $status = null)
     {
-        if($idDemandeur != null && $idReceveur != null && $status != null){
+        if($idDemandeur !== null && $idReceveur !== null && $status !== null){
             $this->idDemandeur = $idDemandeur;
             $this->idReceveur = $idReceveur;
             $this->status = $status;
@@ -16,7 +16,23 @@ class Ami extends Modele{
         $this->idReceveur = $idReceveur ;
     }
     public function ajoutAmi(){
-        $requete = $this->getBdd()->prepare("INSERT INTO amis(idDemandeur,idReceveur) VALUES(?, ?)");
+        $requete = $this->getBdd()->prepare("SELECT * FROM amis WHERE idDemandeur = ? AND idReceveur = ?");
+        $requete->execute([$this->idDemandeur, $this->idReceveur]);
+        $verif = $requete->fetch(PDO::FETCH_ASSOC);
+        if(isset($verif["idDemandeur"])){
+            return false;
+        }else{
+            $requete = $this->getBdd()->prepare("INSERT INTO amis(idDemandeur,idReceveur) VALUES(?, ?)");
+            $requete->execute([$this->idDemandeur, $this->idReceveur]);
+            return true;
+        }
+    }
+    public function accepterAmi(){
+        $requete = $this->getBdd()->prepare("UPDATE amis SET status = 1 WHERE idDemandeur = ? AND idReceveur = ?");
+        $requete->execute([$this->idDemandeur, $this->idReceveur]);
+    }
+    public function refuserAmi(){
+        $requete = $this->getBdd()->prepare("DELETE FROM amis WHERE idDemandeur = ? AND idReceveur = ?");
         $requete->execute([$this->idDemandeur, $this->idReceveur]);
     }
 

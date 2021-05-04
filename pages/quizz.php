@@ -4,14 +4,20 @@ require_once "header.php";
 if(empty($_GET["id"])){
     header("location:index.php");
 }
+$go = 0;
 if(isset($_SESSION["quiz"][$_GET["id"]][10])){
     header("location:../pages/score.php?id=".$_GET["id"]);
+}elseif(isset($_SESSION["quizz"][$_GET["id"]][0])){
+    $go = 1;
 }
 if(!empty($_SESSION["idUtilisateur"])){
     $participe = new Participe($_SESSION["idUtilisateur"],$_GET["id"]);
-    if(!empty($participe->getScore())){
+    if(!empty($participe->getIdUtilisateur())){
         header("location:../pages/score.php?id=".$_GET["id"]);
     }
+}
+if(!empty($_GET["go"])){
+    $go = 1;
 }
 $quizz = new Quizz($_GET["id"]);
 ?>
@@ -20,11 +26,11 @@ $quizz = new Quizz($_GET["id"]);
 <?php
 require_once "navbar.php";
 ?>
-<body <?= !empty($_GET["go"]) || isset($_SESSION["quizz"][$_GET["id"]]) ? "onload=next()" : "";?>>
+<body <?= $go == 1 ? "onload=next()" : "";?>>
     <main>
     <?php
     // affichage description Quizz
-    if(!isset($_SESSION["quizz"][$_GET["id"]]) && empty($_GET["go"])){
+    if($go == 0){
     ?>
         <section style="display:flex;">
             <div></div>
@@ -41,24 +47,21 @@ require_once "navbar.php";
         <?php    
     }
     // verification des questions deja repondu
-    if(!empty($_GET["go"]) || isset($_SESSION["quizz"][$_GET["id"]])){
-        if(!isset($_SESSION["quizz"][$_GET["id"]])){
-            $_SESSION["quizz"][$_GET["id"]] = [];
-        }
+    if($go == 1){
         if(empty($_SESSION["quizz"][$_GET["id"]])){
+            $_SESSION["quizz"][$_GET["id"]] = [];
             $question = 0;
         }else{
             $question = count($_SESSION["quizz"][$_GET["id"]]);
-            if($question > 9){
+            if($question ==10){
                 header("location:../traitements/quizz.php?id=".$_GET["id"]);
             }
         }
-        if($question < 10){
-            $_SESSION["quizz"][$_GET["id"]][$question] = 0;
+        $_SESSION["quizz"][$_GET["id"]][$question] = 0;
+
+        if(!empty($_POST["reponse"])){
+                $_SESSION["quizz"][$_GET["id"]][$question-1] = $_POST["reponse"];
         }
-    if(!empty($_POST["reponse"])){
-            $_SESSION["quizz"][$_GET["id"]][$question-1] = $_POST["reponse"];
-    }
     // affichage questions quizz
     ?>
         <section>

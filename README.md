@@ -10,7 +10,7 @@ UTILISATEUR :
     consulter ses scores - FINI 
     créer un quizz - FINI 
     ajouter des amis  - FINI
-    consulter les scores de ses amis - PAS BESOIN DE + DE MODELE, TRAITEMENT + PAGE A FAIRE
+    consulter les scores de ses amis - FINI
 ADMINISTRATEUR : 
     gerer les utilisateur - FINI
     accepter les quizz créés par les utlisateurs - FINI

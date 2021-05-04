@@ -8,6 +8,7 @@
         $utilisateur = new Utilisateur($_SESSION["idUtilisateur"]);
         ?>
         <a href="../pages/deconnexion.php">Déconnexion</a>
+        <a href="../pages/profil?id=<?=$_SESSION["idUtilisateur"];?>">Profil</a>
         <?php
     }else{
         ?>

@@ -1,7 +1,34 @@
 <?php
 require_once "../pages/header.php";
+// verif d'acces
 if(empty($_GET["id"])){
     header("location:../pages/index.php");
+}
+if(isset($_SESSION["quizz"][$_GET["id"]][10])){
+    $go = 1;
+    $reponses = [];
+    foreach($_SESSION["quizz"][$_GET["id"]] as $key=>$reponse){
+        if($key != 0 ){
+            $reponses[] = $reponse;
+        }else{
+            $score = $_SESSION["quizz"][$_GET["id"]][10];
+        }
+    }
+}elseif(!empty($_SESSION["idUtilisateur"])){
+    $participe = new Participe($_SESSION["idUtilisateur"], $_GET["id"]);
+    if(null != $participe->getIdUtilisateur()){
+        $go = 1;
+        $score = $participe->getScore();
+        $reponses = [];
+        foreach($quizz->getQuestions() as $question){
+            $repondre = new Repondre($_SESSION["idUtilisateur"], $question->getIdQuestion());
+            $reponses[] = $repondre->getIdReponse();
+        }
+    }else{
+        $go = 0;
+    }
+}else{
+    $go = 0;
 }
 $quizz = new Quizz($_GET["id"]);
 
@@ -17,44 +44,13 @@ require_once "../pages/navbar.php";
             <h1><?=$quizz->getTitre();?></h1>
         </section>
         <?php
-        $go = 0;
-        if(!empty($_SESSION["idUtilisateur"])){
-            $participe = new Participe($_SESSION["idUtilisateur"], $_GET["id"]);
-            if(empty($participe->getScore())){
+        if($go == 0){
                 ?>
                 <section>
-                    <h1>
-                        Participer au quizz <a href="../pages/quizz.php?id=<?=$_GET["id"];?>">&#9654;</a>
-                    </h1>
+                    <h1>Participer au quizz <a href="../pages/quizz.php?id=<?=$_GET["id"];?>">&#9654;</a></h1>
                 </section>
                 <?php
-            }else{
-                $score = $participe->getScore();
-                $reponses = [];
-                foreach($quizz->getQuestions() as $question){
-                    $repondre = new Repondre($_SESSION["idUtilisateur"], $question->getIdQuestion());
-                    $reponses[] = $repondre->getIdReponse();
-                }
-                $go = 1;
-            }
-        }elseif(!isset($_SESSION["quizz"][$_GET["id"]]) || (isset($_SESSION["quizz"][$_GET["id"]]) && count($_SESSION["quizz"][$_GET["id"]]) < 11)){
-            ?>
-            <section>
-                <h1>
-                    Participer au quizz <a href="../pages/quizz.php?id=<?=$_GET["id"];?>">&#9654;</a>
-                </h1>
-            </section>
-            <?php
         }else{
-            $score = $_SESSION["quizz"][$_GET["id"]][10];
-            $reponses = [];
-            foreach($_SESSION["quizz"][$_GET["id"]] as $idReponse){
-                $reponses[] = $idReponse;
-            }
-
-            $go = 1;
-        }
-        if($go == 1){
             ?>
             <section>
                 <h1>

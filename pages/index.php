@@ -79,10 +79,40 @@ require_once "navbar.php";
         if(!empty($_SESSION["idUtilisateur"])){
             echo "<section>";
             if(count($listeAmis->getListeAmis()) > 0){
-                foreach($listeAmis->getAmis as $ami){
+                echo "<div>";
+                $attente = [];
+                foreach($listeAmis->getListeAmis() as $ami){
+                    if($ami->getIdDemandeur() != $_SESSION["idUtilisateur"] && $ami->getStatus() == 1){
+                        $objetAmi = new Utilisateur($ami->getIdDemandeur());
+                        ?>
+                        <a href="../pages/profil.php?id=<?=$ami->getIdDemandeur();?>">
+                            <h1><?=$objetAmi->getIdentifiant();?></h1>
+                        </a>
+                        <?php
+                    }elseif($ami->getIdReceveur() != $_SESSION["idUtilisateur"] && $ami->getStatus() == 1){
+                        $objetAmi = new Utilisateur($ami->getIdReceveur());
+                        ?>
+                        <a href="../pages/profil.php?id=<?=$ami->getIdReceveur();?>">
+                            <h1><?=$objetAmi->getIdentifiant();?></h1>
+                        </a>
+                        <?php
+                    }elseif($ami->getIdDemandeur() != $_SESSION["idUtilisateur"] && $ami->getStatus() == 0){
+                        $attente[] = $ami->getIdDemandeur();
+                    }
                 }
-                ?>
-                <?php
+                echo "</div>";
+                if(!empty($attente)){
+                    foreach($attente as $futurAmi){
+                        $utilisateur = new Utilisateur($futurAmi);
+                        ?>
+                        <h3><?=$utilisateur->getIdentifiant();?></h3>
+                        <form action="../traitements/ajoutAmi.php?idDemandeur=<?=$futurAmi;?>" method="post">
+                            <button name="choix" value="1">Accepter</button>
+                            <button name="choix" value="2">Refuser</button>
+                        </form>
+                        <?php
+                    }
+                }
             }
             ?>
                 <h1>Ajouter un ami : </h1>
@@ -91,7 +121,7 @@ require_once "navbar.php";
                     <input type="text" name="identifiant" id="identifiant">
                     <button>Ajouter !</button>
                 </form>
-            <section>;
+            <section>
             <?php
         }
         ?>

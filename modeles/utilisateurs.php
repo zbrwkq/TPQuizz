@@ -8,7 +8,7 @@ class Utilisateur extends Modele{
     private $questionSecrete;
     private $reponseSecrete;
     private $photoProfil;
-    private $idAmi;
+    private $Score;
 
     public function __construct($idUtilisateur = null){
         if($idUtilisateur !== null){
@@ -67,11 +67,11 @@ class Utilisateur extends Modele{
         $requete = $this->getBdd()->prepare("UPDATE utilisateurs SET autorisation = 1 WHERE idUtilisateur = ?");
         $requete->execute([$idUtilisateur]);
     }
-    // public function identifiants(){
-    //     $requete = $this->getBdd()->prepare("SELECT identifiant FROM utilisateurs");
-    //     $requete->execute();
-    //     return $requete->fetchAll(PDO::FETCH_ASSOC);
-    // }
+    public function scoreTotal(){
+        $requete = $this->getBdd()->prepare("SELECT SUM(score) as total FROM `participe` WHERE idUtilisateur = ?");
+        $requete->execute([$this->idUtilisateur]);
+        return $requete->fetch(PDO::FETCH_ASSOC)["total"];
+    }
 
     public function mdpOublie($identifiant){
         $requete = $this->getBdd()->prepare("SELECT identifiant FROM utilisateurs WHERE identifiant = ?");

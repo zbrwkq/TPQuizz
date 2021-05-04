@@ -7,7 +7,7 @@ class Repondre extends Modele{
     
     public function __construct($idUtilisateur = null,$idQuestion = null)
     {
-        if($idUtilisateur != null && $idQuestion != null){
+        if($idUtilisateur !== null && $idQuestion !== null){
             $requete = $this->getBdd()->prepare("SELECT * FROM repondre WHERE idUtilisateur = ? AND idQuestion = ?");
             $requete->execute([$idUtilisateur,$idQuestion]);
             $repondre = $requete->fetch(PDO::FETCH_ASSOC);

@@ -26,7 +26,7 @@
         $participe->initialiserParticipe($_SESSION["idUtilisateur"],$quizz->getIdQuizz(),$_SESSION["quizz"][$_GET["id"]][10]);
         $participe->ajoutParticipe();
     }
-    header("location:../pages/score.php?id=".$_GET["id"]);
+    header("location:../pages/score.php?&id=".$_GET["id"]);
     
 
 
