@@ -5,6 +5,7 @@ if(empty($_GET["id"])){
     header("location:../pages/index.php");
 }
 if(isset($_SESSION["quizz"][$_GET["id"]][10])){
+    $quizz = new Quizz($_GET["id"]);
     $go = 1;
     $reponses = [];
     foreach($_SESSION["quizz"][$_GET["id"]] as $key=>$reponse){
@@ -18,9 +19,9 @@ if(isset($_SESSION["quizz"][$_GET["id"]][10])){
     $participe = new Participe($_SESSION["idUtilisateur"], $_GET["id"]);
     if(null != $participe->getIdUtilisateur()){
         $go = 1;
-        $quizz = new Quizz($_GET["id"]);
         $score = $participe->getScore();
         $reponses = [];
+    $quizz = new Quizz($_GET["id"]);
         foreach($quizz->getQuestions() as $question){
             $repondre = new Repondre($_SESSION["idUtilisateur"], $question->getIdQuestion());
             $reponses[] = $repondre->getIdReponse();

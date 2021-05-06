@@ -3,7 +3,7 @@ require_once "header.php";
 require_once "../traitements/connexion.php";
 
 if(!empty($_GET)){
-    if($_GET["password"] == "change"){
+    if(!empty($_GET["password"]) &&  $_GET["password"] == "change"){
         ?>
         <div class="alert alert-success">
             Votre mot de passe a été changé !

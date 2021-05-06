@@ -1,7 +1,9 @@
 <?php
 require_once "header.php";
 require_once "../traitements/administration.php";
-
+if(empty($_SESSION["idUtilisateur"]) || $_SESSION["autorisation"] != 2){
+    header("location:../pages/index.php");
+}
 $Administration = new Administration();
 $Quizz = new Quizz();
 ?>

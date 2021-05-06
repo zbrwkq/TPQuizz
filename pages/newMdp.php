@@ -1,6 +1,7 @@
 <?php
 require_once "header.php";
 $Utilisateur = new Utilisateur($_GET["id"]);
+print_r($Utilisateur);
 ?>
 
 <p>Voici votre question secrète</p>
